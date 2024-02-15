@@ -1,0 +1,99 @@
+<div class="card bg-light">
+  <article class="card-body mx-auto" style="width: 600px">
+    <h4 class="card-title mt-3 text-center mb-3">Create Account</h4>
+    <form class="w-100 mt-3">
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="bi bi-person"></i> </span>
+        </div>
+        <input
+          [(ngModel)]="user.ime"
+          [ngModelOptions]="{ standalone: true }"
+          name="ime"
+          class="form-control"
+          placeholder="First name"
+          type="text"
+        />
+      </div>
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="bi bi-person"></i> </span>
+        </div>
+        <input
+          [(ngModel)]="user.prezime"
+          [ngModelOptions]="{ standalone: true }"
+          name="prezime"
+          class="form-control"
+          placeholder="Last name"
+          type="text"
+        />
+      </div>
+      <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="bi bi-envelope"></i> </span>
+        </div>
+        <input
+          [(ngModel)]="user.gmail"
+          [ngModelOptions]="{ standalone: true }"
+          name="gmail"
+          class="form-control"
+          placeholder="Email address"
+          type="email"
+        />
+      </div>
+      <!-- form-group// -->
+
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="bi bi-building"></i> </span>
+        </div>
+        <select
+          [(ngModel)]="user.lokacija_cimera"
+          [ngModelOptions]="{ standalone: true }"
+          class="custom-select w-75"
+        >
+          <option disabled selected="">Izaberite lokaciju cimera</option>
+          <option
+            [value]="town"
+            name="lokacija_cimera"
+            *ngFor="let town of towns"
+          >
+            {{ town }}
+          </option>
+        </select>
+      </div>
+      <!-- form-group// -->
+
+      <!-- form-group end.// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="bi bi-lock"></i> </span>
+        </div>
+        <input
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="user.password"
+          name="password"
+          class="form-control"
+          placeholder="Create password"
+          type="password"
+          required="true"
+        />
+      </div>
+      <!-- form-group// -->
+      <div class="form-group">
+        <button
+          (click)="registration()"
+          type="submit"
+          class="btn btn-warning btn-block"
+        >
+          Create Account
+        </button>
+      </div>
+      <!-- form-group// -->
+      <p class="text-center">
+        Have an account? <a routerLink="/login">Log In</a>
+      </p>
+    </form>
+  </article>
+</div>

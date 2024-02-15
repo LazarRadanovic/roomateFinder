@@ -31,18 +31,21 @@ while j<len(gradovi_cg):
   all_articles = soup.find_all('article')
   for article in all_articles:
     naziv_element = article.select('h3')[0].text.replace("Izdavanje,","").strip()
-    cijena_element = article.find("span",class_="font-bold sm:text-xl whitespace-nowrap text-dark-green-1").text.strip()
+    znakovi_za_zamjenu = str.maketrans('', '', '€,')
+    cijena_element = article.find("span",class_="font-bold sm:text-xl whitespace-nowrap text-dark-green-1").text.translate(znakovi_za_zamjenu).strip()
+    if not cijena_element == "Na upit":
+      cijena_element_f = float(cijena_element)
     href_element = article.find('a').get('href')
     temp_url ="https://estitor.com"+href_element
     temp_url_res = requests.get(temp_url,headers=headers)
     temp_soup = bs(temp_url_res.text,'lxml')
     estate_description = temp_soup.find('div',class_='estate-description').text.strip()
-    estate_imgs_urls = []
     imgs_div = temp_soup.find_all('img',class_='rounded-lg')
-    for img in imgs_div:
-      img_url = img.get('src')
-      estate_imgs_urls.append(img_url)
-    niz_stanova_renta.append({"grad":pretraga,"naziv":naziv_element,"cijena":cijena_element,"description":estate_description,"imgs":estate_imgs_urls})
+      # img_url = img.get('src')
+    if len(imgs_div)>=2:
+      niz_stanova_renta.append({"grad":pretraga,"naziv":naziv_element,"cijena":cijena_element_f,"description":estate_description,"img_no1":imgs_div[0].get('src'),"img_no2":imgs_div[1].get('src')})
+    else:
+      niz_stanova_renta.append({"grad":pretraga,"naziv":naziv_element,"cijena":cijena_element_f,"description":estate_description,"img_no1":imgs_div[0].get('src')})
   i = 2
   if int(no_page)>1:
     if int(no_page)<5:
@@ -55,7 +58,10 @@ while j<len(gradovi_cg):
         all_articles = soup.find_all('article')
         for article in all_articles:
           naziv_element = article.select('h3')[0].text.replace("Izdavanje,","").strip()
-          cijena_element = article.find("span",class_="font-bold sm:text-xl whitespace-nowrap text-dark-green-1").text.strip()
+          znakovi_za_zamjenu = str.maketrans('', '', '€,')
+          cijena_element = article.find("span",class_="font-bold sm:text-xl whitespace-nowrap text-dark-green-1").text.translate(znakovi_za_zamjenu).strip()
+          if not cijena_element == "Na upit":
+            cijena_element_f = float(cijena_element)
           href_element = article.find('a').get('href')
           temp_url ="https://estitor.com"+href_element
           temp_url_res = requests.get(temp_url,headers=headers)
@@ -63,10 +69,10 @@ while j<len(gradovi_cg):
           estate_description = temp_soup.find('div',class_='estate-description').text.strip()
           estate_imgs_urls = []
           imgs_div = temp_soup.find_all('img',class_='rounded-lg')
-          for img in imgs_div:
-            img_url = img.get('src')
-            estate_imgs_urls.append(img_url)
-          niz_stanova_renta.append({"grad":pretraga,"naziv":naziv_element,"cijena":cijena_element,"description":estate_description,"imgs":estate_imgs_urls})
+          if len(imgs_div)>=2:
+            niz_stanova_renta.append({"grad":pretraga,"naziv":naziv_element,"cijena":cijena_element_f,"description":estate_description,"img_no1":imgs_div[0].get('src'),"img_no2":imgs_div[1].get('src')})
+          else:
+            niz_stanova_renta.append({"grad":pretraga,"naziv":naziv_element,"cijena":cijena_element_f,"description":estate_description,"img_no1":imgs_div[0].get('src')})
         i+=1
     else:
       while i<=3:
@@ -78,7 +84,10 @@ while j<len(gradovi_cg):
         all_articles = soup.find_all('article')
         for article in all_articles:
           naziv_element = article.select('h3')[0].text.replace("Izdavanje,","").strip()
-          cijena_element = article.find("span",class_="font-bold sm:text-xl whitespace-nowrap text-dark-green-1").text.strip()
+          znakovi_za_zamjenu = str.maketrans('', '', '€,')
+          cijena_element = article.find("span",class_="font-bold sm:text-xl whitespace-nowrap text-dark-green-1").text.translate(znakovi_za_zamjenu).strip()
+          if not cijena_element == "Na upit":
+            cijena_element_f = float(cijena_element)
           href_element = article.find('a').get('href')
           temp_url ="https://estitor.com"+href_element
           temp_url_res = requests.get(temp_url,headers=headers)
@@ -86,10 +95,10 @@ while j<len(gradovi_cg):
           estate_description = temp_soup.find('div',class_='estate-description').text.strip()
           estate_imgs_urls = []
           imgs_div = temp_soup.find_all('img',class_='rounded-lg')
-          for img in imgs_div:
-            img_url = img.get('src')
-            estate_imgs_urls.append(img_url)
-          niz_stanova_renta.append({"grad":pretraga,"naziv":naziv_element,"cijena":cijena_element,"description":estate_description,"imgs":estate_imgs_urls})
+          if len(imgs_div)>=2:
+            niz_stanova_renta.append({"grad":pretraga,"naziv":naziv_element,"cijena":cijena_element_f,"description":estate_description,"img_no1":imgs_div[0].get('src'),"img_no2":imgs_div[1].get('src')})
+          else:
+            niz_stanova_renta.append({"grad":pretraga,"naziv":naziv_element,"cijena":cijena_element_f,"description":estate_description,"img_no1":imgs_div[0].get('src')})
         i+=1
   else:
     pass

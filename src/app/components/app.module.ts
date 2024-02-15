@@ -1,18 +1,30 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import {
-  BrowserModule,
-  provideClientHydration,
-} from '@angular/platform-browser';
+  provideHttpClient,
+  withFetch,
+  HttpClientModule,
+} from '@angular/common/http';
 
-import { AppRoutingModule } from './app/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app/app.component';
-import { HomeComponent } from './pages/home/home.component';
-import { UserComponent } from './pages/user/user.component';
+import { PagesModule } from './pages/pages.module';
+import { HelpersModule } from './helpers/helpers.module';
+import { SharedService } from '../services/shared.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, UserComponent],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [provideClientHydration()],
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    PagesModule,
+    HelpersModule,
+    HttpClientModule,
+    FormsModule,
+
+  ],
+  providers: [provideHttpClient(withFetch()), SharedService], // Use provideHttpClient here
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,49 @@
+<div class="card bg-light">
+  <article class="card-body mx-auto" style="width: 600px">
+    <h4 class="card-title mt-3 text-center mb-3">Log In</h4>
+    <form class="w-100 mt-3">
+      <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="bi bi-envelope"></i> </span>
+        </div>
+        <input
+          [(ngModel)]="user.gmail"
+          name="gmail"
+          class="form-control"
+          placeholder="Email address"
+          type="email"
+        />
+      </div>
+
+      <!-- form-group end.// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="bi bi-lock"></i> </span>
+        </div>
+        <input
+          [(ngModel)]="user.password"
+          name="password"
+          class="form-control"
+          placeholder="Create password"
+          type="password"
+          required="true"
+        />
+      </div>
+      <!-- form-group// -->
+      <div class="form-group">
+        <button
+          (click)="login()"
+          type="submit"
+          class="btn btn-warning btn-block"
+        >
+          Login
+        </button>
+      </div>
+      <!-- form-group// -->
+      <p class="text-center">
+        Don't have an account? <a routerLink="/register">Register</a>
+      </p>
+    </form>
+  </article>
+</div>

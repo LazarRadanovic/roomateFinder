@@ -1,0 +1,75 @@
+<header>
+  <nav class="px-3 navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <img
+      src="../../../../assets/snooze.png"
+      alt="logo"
+      class="logo mr-3 ml-2"
+    />
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span></button
+    ><!--provjerti ovaj button-->
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active" *ngFor="let link of links">
+          <a class="nav-link" routerLink="{{ link.url }}">{{ link.title }} </a>
+        </li>
+      </ul>
+      <form class="form-inline mt-2 mt-md-0">
+        <!-- <input
+          [(ngModel)]="inputSearch"
+          [ngModelOptions]="{ standalone: true }"
+          (keyup.enter)="searchByLocation()"
+          class="form-control mr-sm-2"
+          type="text"
+          placeholder="Pretraži lokaciju..."
+          aria-label="Search"
+        /> -->
+        <div class="form">
+          <i (keyup.enter)="searchByLocation()" class="bi bi-search"></i>
+          <input
+            [(ngModel)]="inputSearch"
+            [ngModelOptions]="{ standalone: true }"
+            (keyup.enter)="searchByLocation()"
+            type="text"
+            class="form-control form-input"
+            placeholder="Search anything..."
+          />
+        </div>
+
+        <div class="text-end">
+          <a
+            *ngIf="!loggedIn"
+            routerLink="login"
+            type="button"
+            class="btn btn-outline-light me-2"
+          >
+            Login
+          </a>
+          <a
+            *ngIf="!loggedIn"
+            routerLink="register"
+            type="button"
+            class="btn btn-warning"
+            >Sign-up</a
+          >
+          <a
+            (click)="logout()"
+            *ngIf="loggedIn"
+            routerLink="register"
+            type="button"
+            class="btn btn-warning"
+            >Log Out</a
+          >
+        </div>
+      </form>
+    </div>
+  </nav>
+</header>

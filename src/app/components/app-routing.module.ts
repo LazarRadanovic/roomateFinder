@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  // {path: "", loadChildren: () => {
-  //   return import('./components/pages/').then(pm => pm.PagesModule)
-  // }},
-  // {path: "admin", loadChildren: () => {
-  //   return import("").then(am => am.AdminModule)
-  // }},
+  {
+    path: '',
+    loadChildren: () => {
+      return import('./pages/pages.module').then((pm) => pm.PagesModule);
+    },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
