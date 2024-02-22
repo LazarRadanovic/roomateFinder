@@ -1,0 +1,44 @@
+<div class="row mb-3">
+  <div class="col d-flex flex-column gap-5">
+    <div>
+      <label class="">Izaberite grad:</label>
+      <select class="custom-select w-auto">
+        <option>Odaberite grad</option>
+        <option [value]="town" *ngFor="let town of towns">
+          {{ town }}
+        </option>
+      </select>
+    </div>
+    <div class="">
+      <ul class="list-group list-group-light">
+        <li class="list-group-item w-25">
+          <input
+            class="form-check-input me-1"
+            type="checkbox"
+            value=""
+            aria-label="..."
+          />
+          First checkbox
+        </li>
+        <li class="list-group-item w-25">
+          <input
+            class="form-check-input me-1"
+            type="checkbox"
+            value=""
+            aria-label="..."
+          />
+          Second checkbox
+        </li>
+        <li class="list-group-item w-25">
+          <input
+            class="form-check-input me-1"
+            type="checkbox"
+            value=""
+            aria-label="..."
+          />
+          Pretraga po broj lajkova
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

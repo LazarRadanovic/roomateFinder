@@ -3,6 +3,7 @@ import { EstatesService } from '../services/estates-service.service';
 import { User } from '../../../models/User';
 import { authService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-register',

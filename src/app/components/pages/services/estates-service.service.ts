@@ -21,4 +21,8 @@ export class EstatesService {
   getAllTowns() {
     return this.http.get<string[]>(`${this.api_url}/towns`);
   }
+
+  getEstateById(id: number) {
+    return this.http.get<Estate>(`${this.api_url}/estates/${id}`);
+  }
 }

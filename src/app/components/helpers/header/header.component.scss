@@ -6,37 +6,35 @@ a:hover {
 .logo {
   height: 42px;
 }
-.height {
-  height: 100vh;
-}
 
-.form {
-  position: relative;
-  margin-right: 10px;
-}
+// .form .bi-search {
+//   position: absolute;
+//   top: 7px;
+//   left: 20px;
+//   color: #9ca3af;
+// }
 
-.form .bi-search {
-  position: absolute;
-  top: 7px;
-  left: 20px;
-  color: #9ca3af;
-}
+// .form span {
+//   position: absolute;
+//   right: 17px;
+//   top: 13px;
+//   padding: 2px;
+//   border-left: 1px solid #d1d5db;
+// }
 
-.form span {
-  position: absolute;
-  right: 17px;
-  top: 13px;
-  padding: 2px;
-  border-left: 1px solid #d1d5db;
+// .form-input {
+//   height: 35px;
+//   text-indent: 33px;
+//   border-radius: 10px;
+// }
+input {
+  margin-right: 4px;
 }
-
-.form-input {
-  height: 35px;
-  text-indent: 33px;
-  border-radius: 10px;
-}
-
 .form-input:focus {
   box-shadow: none;
   border: none;
+}
+
+header {
+  margin-bottom: 75px;
 }

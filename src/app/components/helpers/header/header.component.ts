@@ -4,6 +4,7 @@ import { Links } from '../../../models/Links';
 import { OfferComponent } from '../../pages/offer/offer.component';
 import { SharedService } from '../../../services/shared.service';
 import { authService } from '../../../services/auth.service';
+import { User } from '../../../models/User';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,7 @@ export class HeaderComponent {
     { title: 'About', url: '/about-us' },
   ];
   loggedIn: boolean = this.auth.isLogged();
+  user: User = this.auth.getUserData();
 
   constructor(
     private router: Router,
@@ -36,7 +38,9 @@ export class HeaderComponent {
     // Nastavite sa svojom logikom ili navigacijom
   }
   logout() {
-    this.router.navigate(['/']);
-    localStorage.clear();
+    if (!localStorage.getItem('loggingOut')) {
+      localStorage.setItem('loggingOut', 'true');
+      this.router.navigate(['/login']);
+    }
   }
 }

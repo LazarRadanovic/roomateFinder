@@ -1,0 +1,62 @@
+<div class="container mt-5">
+  <div class="col-md-4 mb-3 imd-div">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex flex-column align-items-center text-center">
+          <img
+            src="https://bootdey.com/img/Content/avatar/avatar7.png"
+            alt="Admin"
+            class="rounded-circle"
+            width="150"
+          />
+          <div class="mt-3">
+            <h4>{{ user.ime }}</h4>
+            <button
+              (click)="addFriend()"
+              *ngIf="friendStatus == 'notFriends'"
+              class="btn btn-primary mr-2"
+            >
+              Add a friend
+            </button>
+            <button
+              (click)="addFriend()"
+              *ngIf="friendStatus == 'accepted'"
+              class="btn btn-success mr-2"
+            >
+              Friends <mat-icon>check_circle_outline</mat-icon>
+            </button>
+            <button
+              (click)="addFriend()"
+              *ngIf="friendStatus == 'pending'"
+              class="btn btn-success mr-2"
+            >
+              Pending request <mat-icon>help_outline</mat-icon>
+            </button>
+            <button class="btn btn-outline-primary">Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8 info">
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3"><h6 class="mb-0">First Name</h6></div>
+          <div class="col-sm-9 text-secondary">{{ user.ime }}</div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-sm-3"><h6 class="mb-0">Last Name</h6></div>
+          <div class="col-sm-9 text-secondary">{{ user.prezime }}</div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-sm-3"><h6 class="mb-0">Gmail</h6></div>
+          <div class="col-sm-9 text-secondary">{{ user.gmail }}</div>
+        </div>
+        <hr />
+      </div>
+    </div>
+  </div>
+</div>

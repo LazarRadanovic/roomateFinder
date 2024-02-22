@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/User';
 
 @Injectable({
@@ -8,14 +8,15 @@ import { User } from '../models/User';
 export class SharedService {
   private searchDataSubject = new BehaviorSubject<string>('');
   searchData$ = this.searchDataSubject.asObservable();
-  private sharedUserSubject = new BehaviorSubject<User>(new User());
-  sharedUser$ = this.sharedUserSubject.asObservable();
+
+  private viewUser = new BehaviorSubject<User>(new User());
+  searchUser$ = this.viewUser.asObservable();
 
   setSearchData(data: string) {
     this.searchDataSubject.next(data);
   }
 
-  setSharedUser(newUser: User) {
-    this.sharedUserSubject.next(newUser);
+  setViewUser(user: User) {
+    this.viewUser.next(user);
   }
 }

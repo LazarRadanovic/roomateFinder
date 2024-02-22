@@ -1,23 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/User';
 import { authService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   user: User = new User();
   constructor(private auth: authService, private router: Router) {}
+  ngOnInit(): void {
+    if (localStorage.getItem('loggingOut')) {
+      window.location.reload();
+      localStorage.clear();
+    }
+  }
 
   login() {
     this.auth.login(this.user).subscribe((data: any) => {
       if (data.success) {
         localStorage.setItem('userToken', data.token);
-        this.user = this.auth.getUserData();
-        this.router.navigate(['/user']);
+        this.router.navigate(['/']);
       } else {
         alert(data.msg);
       }

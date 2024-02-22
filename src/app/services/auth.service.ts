@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/User';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { FriendshipCreate } from '../models/Friendship-create-model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +17,22 @@ export class authService {
   }
   login(user: User) {
     return this.http.post(`${this.api_url}/login`, user);
+  }
+
+  usersLikes(idEstate: number) {
+    return this.http.get<User[]>(`${this.api_url}/user-likes/${idEstate}`);
+  }
+  usersLikedEstate(idEstate: number, idUser: number) {
+    const postData = {
+      estateId: idEstate,
+      userId: idUser,
+    };
+
+    return this.http.post(`${this.api_url}/user-liked-estate/`, postData);
+  }
+
+  getUserById(userId: number) {
+    return this.http.get<User>(`${this.api_url}/user/${userId}`);
   }
 
   getUserData() {
@@ -32,5 +50,53 @@ export class authService {
     } else {
       return false;
     }
+  }
+  checkLoggedUserLike(userId: number, estateId: number): Observable<boolean> {
+    const params = new HttpParams()
+      .set('estateId', estateId.toString())
+      .set('userId', userId.toString());
+
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.get<boolean>(`${this.api_url}/check-user-like/`, {
+      params,
+      headers,
+    });
+  }
+
+  dislikeEstate(userId: number, estateId: number): Observable<boolean> {
+    const params = new HttpParams()
+      .set('estateId', estateId.toString())
+      .set('userId', userId.toString());
+
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.delete<boolean>(`${this.api_url}/dislike-estate/`, {
+      params,
+      headers,
+    });
+  }
+
+  sendFriendRequest(senderId: number, receiverId: number): Observable<boolean> {
+    const friendRequest: FriendshipCreate = {
+      senderId: senderId,
+      receiverId: receiverId,
+      status: 'pending',
+    };
+
+    return this.http.post<boolean>(
+      `${this.api_url}/friendship/send-request`,
+      friendRequest
+    );
+  }
+
+  areFriends(senderId: number, receiverId: number): Observable<any> {
+    const params = new HttpParams()
+      .set('senderId', senderId.toString())
+      .set('receiverId', receiverId.toString());
+
+    return this.http.get<string>(`${this.api_url}/friendship/status`, {
+      params,
+    });
   }
 }

@@ -32,8 +32,7 @@
           placeholder="Pretraži lokaciju..."
           aria-label="Search"
         /> -->
-        <div class="form">
-          <i (keyup.enter)="searchByLocation()" class="bi bi-search"></i>
+        <div *ngIf="!loggedIn" class="form">
           <input
             [(ngModel)]="inputSearch"
             [ngModelOptions]="{ standalone: true }"
@@ -42,6 +41,31 @@
             class="form-control form-input"
             placeholder="Search anything..."
           />
+        </div>
+
+        <div *ngIf="loggedIn" class="dropleft">
+          <button
+            class="btn btn-warning"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <mat-icon>perm_identity</mat-icon>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <span class="dropdown-item">{{ user.ime }} {{ user.prezime }}</span>
+            <a class="dropdown-item" routerLink="/user">Settings</a>
+            <a
+              (click)="logout()"
+              *ngIf="loggedIn"
+              routerLink="register"
+              type="button"
+              class="btn btn-warning dropdown-item"
+              >Log Out</a
+            >
+          </div>
         </div>
 
         <div class="text-end">
@@ -59,14 +83,6 @@
             type="button"
             class="btn btn-warning"
             >Sign-up</a
-          >
-          <a
-            (click)="logout()"
-            *ngIf="loggedIn"
-            routerLink="register"
-            type="button"
-            class="btn btn-warning"
-            >Log Out</a
           >
         </div>
       </form>

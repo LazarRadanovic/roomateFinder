@@ -14,6 +14,9 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { AdminComponent } from './admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ViewEstateComponent } from './view-estate/view-estate.component';
+import { ViewUserComponent } from './view-user/view-user.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,8 @@ import { RouterModule } from '@angular/router';
     OfferComponent,
     AboutUsComponent,
     AdminComponent,
+    ViewEstateComponent,
+    ViewUserComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +38,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    MatIconModule,
   ],
   exports: [HomeComponent, UserComponent, LoginComponent, RegisterComponent],
 })

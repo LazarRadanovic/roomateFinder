@@ -12,6 +12,7 @@ import { PagesModule } from './pages/pages.module';
 import { HelpersModule } from './helpers/helpers.module';
 import { SharedService } from '../services/shared.service';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     HelpersModule,
     HttpClientModule,
     FormsModule,
+    MatIconModule,
 
   ],
   providers: [provideHttpClient(withFetch()), SharedService], // Use provideHttpClient here
