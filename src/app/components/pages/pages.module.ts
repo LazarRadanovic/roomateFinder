@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 import { ViewEstateComponent } from './view-estate/view-estate.component';
 import { ViewUserComponent } from './view-user/view-user.component';
 import { MatIconModule } from '@angular/material/icon';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
     AdminComponent,
     ViewEstateComponent,
     ViewUserComponent,
+    NotificationsComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +42,12 @@ import { MatIconModule } from '@angular/material/icon';
     RouterModule,
     MatIconModule,
   ],
-  exports: [HomeComponent, UserComponent, LoginComponent, RegisterComponent],
+  exports: [
+    HomeComponent,
+    UserComponent,
+    LoginComponent,
+    RegisterComponent,
+    NotificationsComponent,
+  ],
 })
 export class PagesModule {}

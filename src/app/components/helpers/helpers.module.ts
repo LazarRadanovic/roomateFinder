@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchModalComponent } from './search-modal/search-modal.component';
 import { LikedModalComponent } from './liked-modal/liked-modal.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ViewMessagesComponent } from './view-messages/view-messages.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
     FooterComponent,
     SearchModalComponent,
     LikedModalComponent,
+    ViewMessagesComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule, MatIconModule],
   exports: [
@@ -21,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
     FooterComponent,
     SearchModalComponent,
     LikedModalComponent,
+    ViewMessagesComponent,
   ],
 })
 export class HelpersModule {}

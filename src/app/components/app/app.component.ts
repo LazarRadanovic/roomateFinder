@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,5 @@ import { SharedService } from '../../services/shared.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'cimer.me';
+  title = 'cimer';
 }

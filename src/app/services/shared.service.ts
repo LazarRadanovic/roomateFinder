@@ -9,14 +9,14 @@ export class SharedService {
   private searchDataSubject = new BehaviorSubject<string>('');
   searchData$ = this.searchDataSubject.asObservable();
 
-  private viewUser = new BehaviorSubject<User>(new User());
-  searchUser$ = this.viewUser.asObservable();
+  private removeHeaderSubject = new BehaviorSubject<boolean>(false);
+  headerVisibility = this.removeHeaderSubject.asObservable();
 
   setSearchData(data: string) {
     this.searchDataSubject.next(data);
   }
 
-  setViewUser(user: User) {
-    this.viewUser.next(user);
+  setHeaderVisibility(visibility: boolean) {
+    this.removeHeaderSubject.next(visibility);
   }
 }

@@ -20,6 +20,7 @@ export class HeaderComponent {
   ];
   loggedIn: boolean = this.auth.isLogged();
   user: User = this.auth.getUserData();
+  visibility: boolean;
 
   constructor(
     private router: Router,
@@ -27,6 +28,12 @@ export class HeaderComponent {
     private activetedRoute: ActivatedRoute,
     private auth: authService
   ) {}
+
+  setVisibility() {
+    this.sharedService.headerVisibility.subscribe((data) => {
+      this.visibility = data;
+    });
+  }
 
   searchByLocation() {
     if (!(this.activetedRoute.snapshot.url.join('/') === 'offer')) {

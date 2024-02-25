@@ -13,6 +13,7 @@ import { HelpersModule } from './helpers/helpers.module';
 import { SharedService } from '../services/shared.service';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,6 @@ import { MatIconModule } from '@angular/material/icon';
     HttpClientModule,
     FormsModule,
     MatIconModule,
-
   ],
   providers: [provideHttpClient(withFetch()), SharedService], // Use provideHttpClient here
   bootstrap: [AppComponent],
