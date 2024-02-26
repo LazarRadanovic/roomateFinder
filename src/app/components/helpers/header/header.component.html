@@ -56,6 +56,9 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <span class="dropdown-item">{{ user.ime }} {{ user.prezime }}</span>
+            <a class="dropdown-item" routerLink="/notifaction"
+              >Notifacation center</a
+            >
             <a class="dropdown-item" routerLink="/user">Settings</a>
             <a
               (click)="logout()"
