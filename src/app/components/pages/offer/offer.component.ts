@@ -3,8 +3,9 @@ import { Component, Host, OnInit } from '@angular/core';
 import { Estate } from '../../../models/Estate';
 import { environment } from '../../../../environments/environment.development';
 import { EstatesService } from '../services/estates-service.service';
-import { HeaderComponent } from '../../helpers/header/header.component';
 import { SharedService } from '../../../services/shared.service';
+import { authService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-offer',
@@ -15,10 +16,13 @@ export class OfferComponent implements OnInit {
   estates: Estate[] = [];
   api_url = environment.API_URL;
   searchInputData: string = '';
+  isLogged: boolean = this.auth.isLogged();
 
   constructor(
     private estateService: EstatesService,
-    private sharedService: SharedService // @Host() private header: HeaderComponent
+    private sharedService: SharedService, // @Host() private header: HeaderComponent
+    private auth: authService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +41,10 @@ export class OfferComponent implements OnInit {
         this.estates = data;
       });
     }
+  }
+  navigateLoggedOutUser(id: number) {
+    sessionStorage.setItem('estatesSearch', `/view-estate/${id}`);
+    this.router.navigate(['/login']);
   }
 
   // searchByLocation(town: string) {

@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FriendshipCreate } from '../models/Friendship-create-model';
+import { LoggedUserRequest } from '../models/Logged-User-Requests';
 
 @Injectable({
   providedIn: 'root',
@@ -98,5 +99,14 @@ export class authService {
     return this.http.get<string>(`${this.api_url}/friendship/status`, {
       params,
     });
+  }
+
+  getLoggedUserRequest(loggedUserId: number): Observable<LoggedUserRequest[]> {
+    const params = new HttpParams().set('idReciever', loggedUserId.toString());
+
+    return this.http.get<LoggedUserRequest[]>(
+      `${this.api_url}/get-friend-requests`,
+      { params }
+    );
   }
 }

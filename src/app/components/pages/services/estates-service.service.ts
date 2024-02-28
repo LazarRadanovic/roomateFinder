@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Estate } from '../../../models/Estate';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,7 @@ export class EstatesService {
     return this.http.get<string[]>(`${this.api_url}/towns`);
   }
 
-  getEstateById(id: number) {
+  getEstateById(id: number): Observable<Estate> {
     return this.http.get<Estate>(`${this.api_url}/estates/${id}`);
   }
 }

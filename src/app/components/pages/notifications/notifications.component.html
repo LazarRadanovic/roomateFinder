@@ -1,53 +1,31 @@
-<div class="row g-0">
-  <div class="col">
-    <div class="d-flex flex-column flex-shrink-0 bg-dark" style="width: 80px">
-      <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-        <li class="nav-item">
-          <a
-            (click)="selectLink('messages')"
-            href="#"
-            class="nav-link py-3 border-bottom"
+<div class="container-fluid d-flex justify-content-center align-items-center">
+  <div class="row">
+    <div class="col">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li (click)="selectLink('messages')" class="breadcrumb-item">
+            <a>Messages</a>
+          </li>
+          <li (click)="selectLink('friend-request')" class="breadcrumb-item">
+            Friend Requests
+          </li>
+          <li
+            title="Go To Profile"
+            class="breadcrumb-item active"
             aria-current="page"
-            title="See Messages"
-            data-bs-toggle="tooltip"
-            data-bs-placement="right"
-            data-bs-original-title="Home"
           >
-            <mat-icon> chat_bubble</mat-icon>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            (click)="selectLink('friend-request')"
-            href="#"
-            class="nav-link py-3 border-bottom"
-            aria-current="page"
-            title="See Messages"
-            data-bs-toggle="tooltip"
-            data-bs-placement="right"
-            data-bs-original-title="Home"
-          >
-            <mat-icon>person_add</mat-icon>
-          </a>
-        </li>
-        <li>
-          <a
-            routerLink="/user"
-            class="nav-link py-3 border-bottom bg-dark"
-            title="Go Back"
-            data-bs-toggle="tooltip"
-            data-bs-placement="right"
-            data-bs-original-title="Orders"
-          >
-            <mat-icon>arrow_back</mat-icon>
-          </a>
-        </li>
-      </ul>
+            <a routerLink="/user"></a>Profile
+          </li>
+        </ol>
+      </nav>
     </div>
   </div>
-  <div class="col">
+</div>
+<div class="row">
+  <div class="col text-center">
     <app-view-messages *ngIf="selectedLink == 'messages'"></app-view-messages>
     <app-friend-requests
+      [listOfUsers]="loggedUserRequests"
       *ngIf="selectedLink == 'friend-request'"
     ></app-friend-requests>
   </div>

@@ -23,9 +23,16 @@
             }}
           </p>
           <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
+            <div class="btn-group" *ngIf="isLogged">
               <a
                 routerLink="/view-estate/{{ estate.id }}"
+                class="btn btn-warning"
+                >View Estete</a
+              >
+            </div>
+            <div class="btn-group" *ngIf="!isLogged">
+              <a
+                (click)="navigateLoggedOutUser(estate.id)"
                 class="btn btn-warning"
                 >View Estete</a
               >
@@ -36,4 +43,3 @@
     </div>
   </div>
 </div>
-

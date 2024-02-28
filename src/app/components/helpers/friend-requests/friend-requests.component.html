@@ -1,18 +1,17 @@
 <div class="my-3 p-3 bg-white rounded box-shadow">
   <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
   <div class="media text-muted pt-3" *ngFor="let user of listOfUsers">
-    <img
-      data-src=""
-      alt="32x32"
-      class="mr-2 rounded"
-      style="width: 32px; height: 32px"
-      src=""
-      data-holder-rendered="true"
-    />
-    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+    <p
+      class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray text-center"
+    >
       <strong class="d-block text-gray-dark"></strong>
-      You have a friend requst from {{ user.ime }} {{ user.prezime }}.
+      <mat-icon class="ikonica" (click)="addFriend(user.idTable)"
+        >person_add</mat-icon
+      >
+      You have a friend requst from
+      <a routerLink="/view-user/{{ user.userId }}"
+        >{{ user.senderIme }} {{ user.senderPrezime }}.</a
+      >
     </p>
-    <mat-icon>person_add</mat-icon>
   </div>
 </div>

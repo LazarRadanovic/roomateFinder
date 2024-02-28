@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Estate } from '../../../models/Estate';
 import { EstatesService } from '../services/estates-service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../models/User';
 import { authService } from '../../../services/auth.service';
 
@@ -21,19 +21,21 @@ export class ViewEstateComponent implements OnInit {
   constructor(
     private estateService: EstatesService,
     private activatedRoute: ActivatedRoute,
-    private auth: authService
+    private auth: authService,
+    private router: Router
   ) {}
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((paramsData) => {
-      const estateId = paramsData['id'];
-      console.log(estateId);
+    console.log(1111111111);
+
+    this.activatedRoute.params.subscribe((params) => {
+      const estateId = +params['id']; // +params['id'] parsira string u number
       this.estateService.getEstateById(estateId).subscribe((data) => {
         this.estate = data;
         this.checkLoggedUserLike();
-        // console.log(this.blue_heart);
       });
     });
   }
+
   userLikedEstate() {
     if (this.likeIcon) {
       const estateId = this.estate.id;

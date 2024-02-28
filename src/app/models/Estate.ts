@@ -4,6 +4,6 @@ export class Estate {
   title: string;
   price: number;
   description: string;
-  imgLinks: string[];
+  imgLinks?: string[];
   isAvailable: number;
 }
