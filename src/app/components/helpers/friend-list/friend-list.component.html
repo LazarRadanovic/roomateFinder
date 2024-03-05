@@ -1,0 +1,46 @@
+<!-- <div class="my-3 p-3 bg-white rounded box-shadow">
+  <h6 class="border-bottom border-gray pb-2 mb-0">Friends</h6>
+  <div class="media text-muted pt-3" *ngFor="let friend of listOfFriends">
+    <div
+      class="container d-flex align-items-center justify-content-center justify-content-around"
+    >
+      <div class="container1">
+        <p
+          class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray text-center"
+        >
+          <a routerLink="/view-user/{{ friend.friendId }}"
+            >{{ friend.friendIme }} {{ friend.friendPrezime }}.</a
+          >
+        </p>
+      </div>
+      <div class="btns mb-3">
+        <button class="btn btn-warning">
+          <mat-icon> cancel_presentation</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let friend of listOfFriends; let i = index">
+    <tr>
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ friend.friendIme }}</td>
+      <td>{{ friend.friendPrezime }}</td>
+      <td>
+        <button class="btn btn-warning" (click)="deleteFriend(friend.friendId)">
+          <mat-icon> cancel_presentation</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

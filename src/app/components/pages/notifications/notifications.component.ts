@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { authService } from '../../../services/auth.service';
 import { LoggedUserRequest } from '../../../models/Logged-User-Requests';
 import { log } from 'console';
+import { UserServiceService } from '../../../services/user-service.service';
+import { UsersFriends } from '../../../models/Users-friend';
 
 @Component({
   selector: 'app-notifications',
@@ -12,9 +14,14 @@ export class NotificationsComponent implements OnInit {
   selectedLink: string = '';
   loggedUserId: number = this.auth.getUserData().id;
   loggedUserRequests: LoggedUserRequest[];
-  constructor(private auth: authService) {}
+  userFriends: UsersFriends[];
+  constructor(
+    private auth: authService,
+    private UserService: UserServiceService
+  ) {}
   ngOnInit(): void {
     this.getLoggedUserMessage();
+    this.loggedUserFriends();
   }
 
   selectLink(link: string): void {
@@ -28,5 +35,11 @@ export class NotificationsComponent implements OnInit {
         this.loggedUserRequests = data;
         console.log(this.loggedUserRequests);
       });
+  }
+
+  loggedUserFriends() {
+    this.UserService.loggedUserFrineds().subscribe((data: UsersFriends[]) => {
+      this.userFriends = data;
+    });
   }
 }

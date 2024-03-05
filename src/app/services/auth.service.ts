@@ -109,4 +109,16 @@ export class authService {
       { params }
     );
   }
+
+  acceptFriendRequest(idTable: number) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    // const params = new HttpParams().set('idTable', idTable.toString());
+    return this.http.post(
+      `${this.api_url}/accept-request`,
+      { idTable },
+      {
+        headers,
+      }
+    );
+  }
 }

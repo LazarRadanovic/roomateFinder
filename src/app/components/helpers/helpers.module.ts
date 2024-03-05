@@ -9,6 +9,7 @@ import { LikedModalComponent } from './liked-modal/liked-modal.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ViewMessagesComponent } from './view-messages/view-messages.component';
 import { FriendRequestsComponent } from './friend-requests/friend-requests.component';
+import { FriendListComponent } from './friend-list/friend-list.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FriendRequestsComponent } from './friend-requests/friend-requests.compo
     LikedModalComponent,
     ViewMessagesComponent,
     FriendRequestsComponent,
+    FriendListComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule, MatIconModule],
   exports: [
@@ -28,6 +30,7 @@ import { FriendRequestsComponent } from './friend-requests/friend-requests.compo
     ViewMessagesComponent,
     ViewMessagesComponent,
     FriendRequestsComponent,
+    FriendListComponent,
   ],
 })
 export class HelpersModule {}

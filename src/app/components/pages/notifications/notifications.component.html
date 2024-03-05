@@ -10,11 +10,12 @@
             Friend Requests
           </li>
           <li
-            title="Go To Profile"
+            (click)="selectLink('friend-list')"
+            title="See your friend list"
             class="breadcrumb-item active"
             aria-current="page"
           >
-            <a routerLink="/user"></a>Profile
+            <a>Roomate List</a>
           </li>
         </ol>
       </nav>
@@ -28,5 +29,9 @@
       [listOfUsers]="loggedUserRequests"
       *ngIf="selectedLink == 'friend-request'"
     ></app-friend-requests>
+    <app-friend-list
+      [listOfFriends]="userFriends"
+      *ngIf="selectedLink == 'friend-list'"
+    ></app-friend-list>
   </div>
 </div>

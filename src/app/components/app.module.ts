@@ -14,6 +14,8 @@ import { SharedService } from '../services/shared.service';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +27,8 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
     HttpClientModule,
     FormsModule,
     MatIconModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [provideHttpClient(withFetch()), SharedService], // Use provideHttpClient here
   bootstrap: [AppComponent],
