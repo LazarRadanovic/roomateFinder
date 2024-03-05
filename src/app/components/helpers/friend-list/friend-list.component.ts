@@ -23,12 +23,13 @@ export class FriendListComponent {
   deleteFriend(friendId: number) {
     this.UserService.deleteFriend(friendId, this.loggedUserId).subscribe(
       (data: any) => {
-        if (data.succes) {
+        if (data.success) {
           this.toaster.success(
             'Deleted a friend',
             'You succesfully deleted a friend',
             { timeOut: 4000, positionClass: 'toast-bottom-right' }
           );
+          window.location.reload();
         } else {
           this.toaster.warning('Error', 'Some Error Occured', {
             timeOut: 3000,

@@ -15,6 +15,7 @@ export class ViewEstateComponent implements OnInit {
   users: User[];
   showModal: boolean = false;
   likeIcon: boolean = false;
+  reserveModal: boolean = false;
   isLogged = this.auth.isLogged();
   currentLoggedUserId: number = this.auth.getUserData().id;
 
@@ -25,8 +26,6 @@ export class ViewEstateComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit(): void {
-    console.log(1111111111);
-
     this.activatedRoute.params.subscribe((params) => {
       const estateId = +params['id']; // +params['id'] parsira string u number
       this.estateService.getEstateById(estateId).subscribe((data) => {
@@ -74,5 +73,10 @@ export class ViewEstateComponent implements OnInit {
         this.likeIcon = data;
         console.log(this.likeIcon);
       });
+  }
+
+  toggleReserveModal() {
+    this.reserveModal = !this.reserveModal;
+    console.log(this.reserveModal);
   }
 }

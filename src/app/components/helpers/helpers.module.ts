@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ViewMessagesComponent } from './view-messages/view-messages.component';
 import { FriendRequestsComponent } from './friend-requests/friend-requests.component';
 import { FriendListComponent } from './friend-list/friend-list.component';
+import { ReserveEstateComponent } from './reserve-estate/reserve-estate.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FriendListComponent } from './friend-list/friend-list.component';
     ViewMessagesComponent,
     FriendRequestsComponent,
     FriendListComponent,
+    ReserveEstateComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule, MatIconModule],
   exports: [
@@ -31,6 +33,7 @@ import { FriendListComponent } from './friend-list/friend-list.component';
     ViewMessagesComponent,
     FriendRequestsComponent,
     FriendListComponent,
+    ReserveEstateComponent,
   ],
 })
 export class HelpersModule {}
