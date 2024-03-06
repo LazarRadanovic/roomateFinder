@@ -18,6 +18,7 @@ import { ViewEstateComponent } from './view-estate/view-estate.component';
 import { ViewUserComponent } from './view-user/view-user.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     ReactiveFormsModule,
     RouterModule,
     MatIconModule,
+    MatDialogModule,
   ],
   exports: [
     HomeComponent,

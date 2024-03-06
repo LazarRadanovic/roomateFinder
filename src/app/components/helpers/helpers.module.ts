@@ -11,6 +11,7 @@ import { ViewMessagesComponent } from './view-messages/view-messages.component';
 import { FriendRequestsComponent } from './friend-requests/friend-requests.component';
 import { FriendListComponent } from './friend-list/friend-list.component';
 import { ReserveEstateComponent } from './reserve-estate/reserve-estate.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -21,9 +22,15 @@ import { ReserveEstateComponent } from './reserve-estate/reserve-estate.componen
     ViewMessagesComponent,
     FriendRequestsComponent,
     FriendListComponent,
+  ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    MatIconModule,
+    MatDialogModule,
     ReserveEstateComponent,
   ],
-  imports: [CommonModule, RouterModule, FormsModule, MatIconModule],
   exports: [
     HeaderComponent,
     FooterComponent,

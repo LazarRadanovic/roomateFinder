@@ -4,6 +4,8 @@ import { EstatesService } from '../services/estates-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../models/User';
 import { authService } from '../../../services/auth.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ReserveEstateComponent } from '../../helpers/reserve-estate/reserve-estate.component';
 
 @Component({
   selector: 'app-view-estate',
@@ -23,7 +25,8 @@ export class ViewEstateComponent implements OnInit {
     private estateService: EstatesService,
     private activatedRoute: ActivatedRoute,
     private auth: authService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
@@ -75,8 +78,15 @@ export class ViewEstateComponent implements OnInit {
       });
   }
 
-  toggleReserveModal() {
-    this.reserveModal = !this.reserveModal;
-    console.log(this.reserveModal);
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    // dialogConfig.position = {
+    //   top: '0',
+    //   left: '0',
+    // };
+    this.dialog.open(ReserveEstateComponent, dialogConfig);
   }
 }
