@@ -4,6 +4,7 @@ import { UserServiceService } from '../../../services/user-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { authService } from '../../../services/auth.service';
 import { log } from 'console';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-friend-list',
@@ -17,7 +18,8 @@ export class FriendListComponent {
   constructor(
     private UserService: UserServiceService,
     private toaster: ToastrService,
-    private auth: authService
+    private auth: authService,
+    private router: Router
   ) {}
 
   deleteFriend(friendId: number) {
@@ -29,7 +31,11 @@ export class FriendListComponent {
             'You succesfully deleted a friend',
             { timeOut: 4000, positionClass: 'toast-bottom-right' }
           );
-          window.location.reload();
+          this.UserService.loggedUserFrineds().subscribe(
+            (data: UsersFriends[]) => {
+              this.listOfFriends = data;
+            }
+          );
         } else {
           this.toaster.warning('Error', 'Some Error Occured', {
             timeOut: 3000,

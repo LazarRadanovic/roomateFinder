@@ -6,6 +6,8 @@ import { User } from '../../../models/User';
 import { authService } from '../../../services/auth.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ReserveEstateComponent } from '../../helpers/reserve-estate/reserve-estate.component';
+import { UsersFriends } from '../../../models/Users-friend';
+import { UserServiceService } from '../../../services/user-service.service';
 
 @Component({
   selector: 'app-view-estate',
@@ -20,13 +22,15 @@ export class ViewEstateComponent implements OnInit {
   reserveModal: boolean = false;
   isLogged = this.auth.isLogged();
   currentLoggedUserId: number = this.auth.getUserData().id;
+  userFriends: UsersFriends[];
 
   constructor(
     private estateService: EstatesService,
     private activatedRoute: ActivatedRoute,
     private auth: authService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private UserService: UserServiceService
   ) {}
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
@@ -36,6 +40,7 @@ export class ViewEstateComponent implements OnInit {
         this.checkLoggedUserLike();
       });
     });
+    this.loggedUserFriends();
   }
 
   userLikedEstate() {
@@ -77,16 +82,11 @@ export class ViewEstateComponent implements OnInit {
         console.log(this.likeIcon);
       });
   }
+  loggedUserFriends() {
+    this.UserService.loggedUserFrineds().subscribe((data: UsersFriends[]) => {
+      console.log(data, 11111);
 
-  openDialog() {
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    // dialogConfig.position = {
-    //   top: '0',
-    //   left: '0',
-    // };
-    this.dialog.open(ReserveEstateComponent, dialogConfig);
+      this.userFriends = data;
+    });
   }
 }

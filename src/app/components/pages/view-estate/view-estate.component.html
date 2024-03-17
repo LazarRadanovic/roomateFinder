@@ -38,7 +38,12 @@
             >favorite_border</mat-icon
           >
         </div>
-        <button mat-button (click)="openDialog()" class="btn btn-primary">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        >
           Reserve
         </button>
       </div>
@@ -57,3 +62,5 @@
     *ngIf="showModal"
   ></app-liked-modal>
 </div>
+
+<app-reserve-estate [listOfFriends]="userFriends"></app-reserve-estate>

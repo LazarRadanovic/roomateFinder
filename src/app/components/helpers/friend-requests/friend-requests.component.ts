@@ -17,7 +17,8 @@ export class FriendRequestsComponent {
   constructor(
     private userService: authService,
     private toaster: ToastrService,
-    private router: Router
+    private router: Router,
+    private auth: authService
   ) {}
 
   addFriend(idTable: number) {
@@ -30,7 +31,11 @@ export class FriendRequestsComponent {
           'You succesfully added a friend',
           { timeOut: 3000, positionClass: 'toast-bottom-right' }
         );
-        this.reloadComponent();
+        this.userService
+          .getLoggedUserRequest(this.auth.getUserData().id)
+          .subscribe((data: LoggedUserRequest[]) => {
+            this.listOfUsers = data;
+          });
       } else {
         this.toaster.warning('Error', 'Some Error Occured', {
           timeOut: 3000,
