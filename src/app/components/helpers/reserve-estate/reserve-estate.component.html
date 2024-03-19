@@ -9,7 +9,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Reserve with Roomate</h5>
         <button
           type="button"
           class="close"
@@ -20,15 +20,27 @@
         </button>
       </div>
       <div class="modal-body">
-        <div *ngFor="let friend of listOfFriends">
-          <span>{{ friend.friendIme }}</span>
+        <div>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let friend of listOfFriends">
+              <tr (click)="resrveEstate(friend.friendId)">
+                <th scope="row">{{ friend.friendIme }}</th>
+                <td scope="row">{{ friend.friendPrezime }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

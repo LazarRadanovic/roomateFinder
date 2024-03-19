@@ -1,37 +1,77 @@
 <div class="container-fluid d-flex justify-content-center align-items-center">
   <div class="row">
     <div class="col">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li (click)="selectLink('messages')" class="breadcrumb-item">
-            <a>Messages</a>
+      <div
+        class="d-flex flex-column flex-shrink-0 p-3 bg-light"
+        style="width: 280px"
+      >
+        <span class="fs-4">Notification Center</span>
+        <hr />
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a
+              (click)="selectLink('messages')"
+              href="#"
+              class="nav-link active"
+              aria-current="page"
+            >
+              Messagess
+            </a>
           </li>
-          <li (click)="selectLink('friend-request')" class="breadcrumb-item">
-            Friend Requests
+          <li>
+            <a
+              (click)="selectLink('friend-request')"
+              href="#"
+              class="nav-link link-dark"
+            >
+              Friend Requests
+            </a>
           </li>
-          <li
-            (click)="selectLink('friend-list')"
-            title="See your friend list"
-            class="breadcrumb-item active"
-            aria-current="page"
-          >
-            <a>Roomate List</a>
+          <li>
+            <a
+              (click)="selectLink('roommate-request')"
+              href="#"
+              class="nav-link link-dark"
+            >
+              Roomate Requests
+            </a>
           </li>
-        </ol>
-      </nav>
+          <li>
+            <a
+              (click)="selectLink('friend-list')"
+              href="#"
+              class="nav-link link-dark"
+            >
+              Friend Lists
+            </a>
+          </li>
+          <li>
+            <a
+              (click)="selectLink('current-roomate')"
+              href="#"
+              class="nav-link link-dark"
+            >
+              Current Roomate
+            </a>
+          </li>
+        </ul>
+        <hr />
+      </div>
     </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col text-center">
-    <app-view-messages *ngIf="selectedLink == 'messages'"></app-view-messages>
-    <app-friend-requests
-      [listOfUsers]="loggedUserRequests"
-      *ngIf="selectedLink == 'friend-request'"
-    ></app-friend-requests>
-    <app-friend-list
-      [listOfFriends]="userFriends"
-      *ngIf="selectedLink == 'friend-list'"
-    ></app-friend-list>
+    <div class="col">
+      <div class="col text-center">
+        <app-view-messages
+          *ngIf="selectedLink == 'messages'"
+        ></app-view-messages>
+        <app-friend-requests
+          [listOfUsers]="loggedUserRequests"
+          *ngIf="selectedLink == 'friend-request'"
+        ></app-friend-requests>
+        <app-friend-list
+          [listOfFriends]="userFriends"
+          *ngIf="selectedLink == 'friend-list'"
+        ></app-friend-list>
+      </div>
+    </div>
   </div>
 </div>

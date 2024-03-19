@@ -20,7 +20,7 @@ export class NotificationsComponent implements OnInit {
     private UserService: UserServiceService
   ) {}
   ngOnInit(): void {
-    this.getLoggedUserMessage();
+    this.getLoggedUserRequests();
     this.loggedUserFriends();
   }
 
@@ -28,12 +28,11 @@ export class NotificationsComponent implements OnInit {
     this.selectedLink = link;
   }
 
-  getLoggedUserMessage() {
+  getLoggedUserRequests() {
     this.auth
       .getLoggedUserRequest(this.loggedUserId)
       .subscribe((data: LoggedUserRequest[]) => {
         this.loggedUserRequests = data;
-        console.log(this.loggedUserRequests);
       });
   }
 
