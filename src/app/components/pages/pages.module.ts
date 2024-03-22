@@ -19,6 +19,9 @@ import { ViewUserComponent } from './view-user/view-user.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { EditUserComponent } from './user/edit-user/edit-user.component';
+import { MatInputModule } from '@angular/material/input';
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ViewEstateComponent,
     ViewUserComponent,
     NotificationsComponent,
+    EditUserComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +47,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     RouterModule,
     MatIconModule,
     MatDialogModule,
+    MatInputModule,
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.circleSwish,
+      backdropBorderRadius: '4px',
+    }),
   ],
   exports: [
     HomeComponent,

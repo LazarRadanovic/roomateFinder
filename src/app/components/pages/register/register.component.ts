@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EstatesService } from '../services/estates-service.service';
 import { User } from '../../../models/User';
-import { authService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { SharedService } from '../../../services/shared.service';
 
@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private estateService: EstatesService,
-    private auth: authService,
+    private auth: AuthService,
     private router: Router
   ) {}
   ngOnInit(): void {

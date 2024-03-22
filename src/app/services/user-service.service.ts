@@ -1,18 +1,21 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { authService } from './auth.service';
+import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { UsersFriends } from '../models/Users-friend';
 import { RoommateReqest } from '../models/Roommate-request';
+import { FormGroup } from '@angular/forms';
+import { User } from '../models/User';
+import { CurrentRoommate } from '../models/Current-roommate';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserServiceService {
+export class UserService {
   api_url = environment.API_URL;
   loggedUserId = this.auth.getUserData().id;
-  constructor(private http: HttpClient, private auth: authService) {}
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   deleteFriend(friend: number, loggedUser: number) {
     const params = {
@@ -34,9 +37,14 @@ export class UserServiceService {
     });
   }
 
-  roomateRequest(senderID: number, receiverID: number): Observable<boolean> {
+  roomateRequest(
+    senderID: number,
+    receiverID: number,
+    idEstate: number
+  ): Observable<boolean> {
     const roomateReq: RoommateReqest = {
       senderId: senderID,
+      idEstate: idEstate,
       receiverId: receiverID,
       status: 'Pending',
     };
@@ -45,4 +53,16 @@ export class UserServiceService {
       roomateReq
     );
   }
+
+  currentRoomate(loggedUserId: number): Observable<CurrentRoommate> {
+    const params = {
+      loggedUserId: loggedUserId,
+    };
+    return this.http.post<CurrentRoommate>(
+      `${this.api_url}/current/roommate`,
+      params
+    );
+  }
+
+  editUser(userData: User) {}
 }

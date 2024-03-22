@@ -11,7 +11,7 @@
           />
           <div class="mt-3">
             <!-- ime -->
-            <h4>{{ user.ime }}</h4>
+            <h4>{{ user.imeRoommate }}</h4>
           </div>
         </div>
       </div>
@@ -22,12 +22,12 @@
       <div class="card-body">
         <div class="row">
           <div class="col-sm-3"><h6 class="mb-0">First Name</h6></div>
-          <div class="col-sm-9 text-secondary">{{ user.ime }}</div>
+          <div class="col-sm-9 text-secondary">{{ user.imeRoommate }}</div>
         </div>
         <hr />
         <div class="row">
           <div class="col-sm-3"><h6 class="mb-0">Last Name</h6></div>
-          <div class="col-sm-9 text-secondary">{{ user.prezime }}</div>
+          <div class="col-sm-9 text-secondary">{{ user.prezimeRoommate }}</div>
         </div>
         <hr />
         <div class="row">
@@ -40,21 +40,38 @@
           <div class="col-sm-9 text-secondary">{{ user.lokacija_cimera }}</div>
         </div>
         <hr />
-        <div class="row">
-          <div class="col-sm-12">
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-toggle="modal"
-              data-target="#editUserModal"
-             
-            >
-              Edit
-            </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="kontenjer w-100 rounded border border-secondary">
+  <div class="img-container text-center mt-2">
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <div class="image-grid d-flex flex-row">
+          <div class="image-item align-items-center">
+            <img [src]="user.img_no1" alt="..." class="img-fluid" />
+          </div>
+          <div class="image-item align-items-center">
+            <img
+              *ngIf="user.img_no1 && user.img_no2[1]"
+              class="card-img-top img-fluid"
+              alt="{{ 'stan u '.concat(user.estateTown) }}"
+              [src]="user.img_no1"
+              data-holder-rendered="true"
+            />
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="desc-container">
+    <div class="row">
+      <div class="col">
+        <h2 class="text-center">{{ user.estateTown }}</h2>
+        <p>{{ user.description }}</p>
+      </div>
+    </div>
+  </div>
 </div>
-<app-edit-user></app-edit-user>

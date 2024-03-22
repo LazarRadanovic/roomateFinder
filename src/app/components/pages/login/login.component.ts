@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/User';
-import { authService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { SharedService } from '../../../services/shared.service';
 
@@ -11,7 +11,7 @@ import { SharedService } from '../../../services/shared.service';
 })
 export class LoginComponent implements OnInit {
   user: User = new User();
-  constructor(private auth: authService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {}
   ngOnInit(): void {
     if (localStorage.getItem('loggingOut')) {
       window.location.reload();

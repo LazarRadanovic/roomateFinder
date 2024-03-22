@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Links } from '../../../models/Links';
 import { OfferComponent } from '../../pages/offer/offer.component';
 import { SharedService } from '../../../services/shared.service';
-import { authService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/User';
 
 @Component({
@@ -26,7 +26,7 @@ export class HeaderComponent {
     private router: Router,
     private sharedService: SharedService,
     private activetedRoute: ActivatedRoute,
-    private auth: authService
+    private auth: AuthService
   ) {}
 
   setVisibility() {

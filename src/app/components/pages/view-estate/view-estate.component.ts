@@ -3,11 +3,11 @@ import { Estate } from '../../../models/Estate';
 import { EstatesService } from '../services/estates-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../models/User';
-import { authService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ReserveEstateComponent } from '../../helpers/reserve-estate/reserve-estate.component';
 import { UsersFriends } from '../../../models/Users-friend';
-import { UserServiceService } from '../../../services/user-service.service';
+import { UserService } from '../../../services/user-service.service';
 
 @Component({
   selector: 'app-view-estate',
@@ -27,10 +27,10 @@ export class ViewEstateComponent implements OnInit {
   constructor(
     private estateService: EstatesService,
     private activatedRoute: ActivatedRoute,
-    private auth: authService,
+    private auth: AuthService,
     private router: Router,
     private dialog: MatDialog,
-    private UserService: UserServiceService
+    private UserService: UserService
   ) {}
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {

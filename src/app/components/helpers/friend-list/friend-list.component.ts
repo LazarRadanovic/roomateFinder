@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { UsersFriends } from '../../../models/Users-friend';
-import { UserServiceService } from '../../../services/user-service.service';
+import { UserService } from '../../../services/user-service.service';
 import { ToastrService } from 'ngx-toastr';
-import { authService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { log } from 'console';
 import { Router } from '@angular/router';
 
@@ -16,9 +16,9 @@ export class FriendListComponent {
   loggedUserId: number = this.auth.getUserData().id;
 
   constructor(
-    private UserService: UserServiceService,
+    private UserService: UserService,
     private toaster: ToastrService,
-    private auth: authService,
+    private auth: AuthService,
     private router: Router
   ) {}
 

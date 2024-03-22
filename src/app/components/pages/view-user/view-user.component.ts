@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/User';
-import { authService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class ViewUserComponent implements OnInit {
   loggedUser: User = this.auth.getUserData();
   user: User = new User();
   constructor(
-    private auth: authService,
+    private auth: AuthService,
     private activedRoute: ActivatedRoute
   ) {}
   ngOnInit(): void {

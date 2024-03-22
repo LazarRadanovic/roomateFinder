@@ -1,12 +1,10 @@
+<!-- app-search-modal.component.html -->
 <div class="row mb-3">
   <div class="col d-flex flex-column gap-5">
     <div>
-      <label class="">Izaberite grad:</label>
-      <select class="custom-select w-auto">
-        <option>Odaberite grad</option>
-        <option [value]="town" *ngFor="let town of towns">
-          {{ town }}
-        </option>
+      <label class="mr-2">Izaberite grad:</label>
+      <select (change)="onOptionSelected($event)">
+        <option *ngFor="let town of towns" [value]="town">{{ town }}</option>
       </select>
     </div>
   </div>

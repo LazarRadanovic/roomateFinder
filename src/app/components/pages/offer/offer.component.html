@@ -1,5 +1,14 @@
+<ngx-loading [show]="loading"></ngx-loading>
 <div class="container mt-5">
-  <app-search-modal></app-search-modal>
+  <button class="filtriraj btn btn-warning mb-4 mt-2" (click)="filterEstates()">
+    Filter
+  </button>
+  <app-search-modal
+    *ngIf="filterActive"
+    (optionSelected)="sortTownSelected($event)"
+    class="mb-2"
+  ></app-search-modal>
+
   <div class="row">
     <div class="col-md-4" *ngFor="let estate of estates">
       <div
@@ -43,3 +52,4 @@
     </div>
   </div>
 </div>
+<app-footer *ngIf="!loading"></app-footer>

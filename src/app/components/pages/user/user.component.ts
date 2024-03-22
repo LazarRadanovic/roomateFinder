@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/User';
-import { authService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -9,6 +9,6 @@ import { authService } from '../../../services/auth.service';
 export class UserComponent implements OnInit {
   user: User = this.auth.getUserData();
 
-  constructor(private auth: authService) {}
+  constructor(private auth: AuthService) {}
   ngOnInit(): void {}
 }

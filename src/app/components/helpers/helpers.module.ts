@@ -19,6 +19,8 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { CurrentRoommateComponent } from './current-roommate/current-roommate.component';
+import { RoommateRequestsComponent } from './roommate-requests/roommate-requests.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { MatButtonModule } from '@angular/material/button';
     FriendRequestsComponent,
     FriendListComponent,
     ReserveEstateComponent,
+    CurrentRoommateComponent,
+    RoommateRequestsComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +52,8 @@ import { MatButtonModule } from '@angular/material/button';
     FriendRequestsComponent,
     FriendListComponent,
     ReserveEstateComponent,
+    CurrentRoommateComponent,
+    RoommateRequestsComponent,
   ],
 })
 export class HelpersModule {}

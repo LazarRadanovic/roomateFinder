@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UsersFriends } from '../../../models/Users-friend';
-import { authService } from '../../../services/auth.service';
-import { UserServiceService } from '../../../services/user-service.service';
+import { AuthService } from '../../../services/auth.service';
+import { UserService } from '../../../services/user-service.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -11,17 +11,18 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ReserveEstateComponent implements OnInit {
   @Input() listOfFriends: UsersFriends[];
+  @Input() estateID: number;
   loggedUser = this.auth.getUserData();
   constructor(
-    private auth: authService,
-    private userService: UserServiceService,
+    private auth: AuthService,
+    private userService: UserService,
     private toast: ToastrService
   ) {}
   ngOnInit(): void {}
 
   resrveEstate(friendId: number) {
     this.userService
-      .roomateRequest(this.loggedUser.id, friendId)
+      .roomateRequest(this.loggedUser.id, friendId, this.estateID)
       .subscribe((data: boolean) => {
         if (data) {
           let friend = this.listOfFriends.filter(

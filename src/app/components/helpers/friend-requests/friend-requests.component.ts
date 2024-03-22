@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { User } from '../../../models/User';
 import { LoggedUserRequest } from '../../../models/Logged-User-Requests';
-import { authService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, NavigationExtras } from '@angular/router';
 
@@ -15,10 +15,10 @@ export class FriendRequestsComponent {
   friend_aceppted: boolean;
 
   constructor(
-    private userService: authService,
+    private userService: AuthService,
     private toaster: ToastrService,
     private router: Router,
-    private auth: authService
+    private auth: AuthService
   ) {}
 
   addFriend(idTable: number) {
