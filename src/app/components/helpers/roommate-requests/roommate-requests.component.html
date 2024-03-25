@@ -1,1 +1,41 @@
-<p>roommate-requests works!</p>
+<div
+  class="my-3 p-3 bg-white rounded box-shadow"
+  *ngIf="roommateRequestsList.length > 0"
+>
+  <h6 class="border-bottom border-gray pb-2 mb-0">Roommate Requests</h6>
+  <div class="media text-muted pt-3" *ngFor="let user of roommateRequestsList">
+    <div
+      class="container d-flex align-items-center justify-content-center justify-content-around"
+    >
+      <div class="container1">
+        <p
+          class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray text-center"
+        >
+          You have a roommate requst from
+          <a routerLink="/view-user/{{ user.userId }}"
+            >{{ user.senderIme }} {{ user.senderPrezime }}.</a
+          >
+        </p>
+      </div>
+      <div class="btns mb-3">
+        <button
+          class="btn btn-success mr-2"
+          (click)="addRoommateRequest(user.idTable)"
+        >
+          <mat-icon class="ikonica">person_add</mat-icon>
+        </button>
+        <button
+          class="btn btn-warning"
+          (click)="declineRoommateRequest(user.idTable)"
+        >
+          <mat-icon> cancel_presentation</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="roommateRequestsList.length === 0">
+  <div class="alert alert-primary">
+    <p>There is no roommate requests!</p>
+  </div>
+</div>

@@ -8,6 +8,7 @@ import { RoommateReqest } from '../models/Roommate-request';
 import { FormGroup } from '@angular/forms';
 import { User } from '../models/User';
 import { CurrentRoommate } from '../models/Current-roommate';
+import { LoggedUserRequest } from '../models/Logged-User-Requests';
 
 @Injectable({
   providedIn: 'root',
@@ -61,6 +62,40 @@ export class UserService {
     return this.http.post<CurrentRoommate>(
       `${this.api_url}/current/roommate`,
       params
+    );
+  }
+
+  getLoggedUserRequest(loggedUserId: number): Observable<LoggedUserRequest[]> {
+    const params = new HttpParams().set(
+      'loggedUserID',
+      loggedUserId.toString()
+    );
+
+    return this.http.get<LoggedUserRequest[]>(
+      `${this.api_url}/roommate-request-list`,
+      { params }
+    );
+  }
+
+  acceptRoommateRequest(idTable: number) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(
+      `${this.api_url}/accept-roommate-request`,
+      { idTable },
+      {
+        headers,
+      }
+    );
+  }
+
+  declineRoommateRequest(idTable: number) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(
+      `${this.api_url}/decline-roommate-request`,
+      { idTable },
+      {
+        headers,
+      }
     );
   }
 

@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="user !== null">
   <div class="col-md-4 mb-3 imd-div">
     <div class="card">
       <div class="card-body">
@@ -44,7 +44,10 @@
     </div>
   </div>
 </div>
-<div class="kontenjer w-100 rounded border border-secondary">
+<div
+  class="kontenjer w-100 rounded border border-secondary"
+  *ngIf="user !== null"
+>
   <div class="img-container text-center mt-2">
     <div class="row justify-content-center">
       <div class="col-auto">
@@ -73,5 +76,15 @@
         <p>{{ user.description }}</p>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="container msg" *ngIf="user === null">
+  <h2 class="text-center">Still dont have a roommate?</h2>
+  <div class="alert alert-primary">
+    <p>
+      Search our <a routerLink="/offer">estates</a> and find roommate on
+      specific estate!
+    </p>
   </div>
 </div>

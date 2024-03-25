@@ -1,4 +1,7 @@
-<div class="my-3 p-3 bg-white rounded box-shadow">
+<div
+  class="my-3 p-3 bg-white rounded box-shadow"
+  *ngIf="listOfUsers.length > 0"
+>
   <h6 class="border-bottom border-gray pb-2 mb-0">Friend Requests</h6>
   <div class="media text-muted pt-3" *ngFor="let user of listOfUsers">
     <div
@@ -23,5 +26,10 @@
         </button>
       </div>
     </div>
+  </div>
+</div>
+<div class="container" *ngIf="listOfUsers.length === 0">
+  <div class="alert alert-primary">
+    <p>There is no friend requests!</p>
   </div>
 </div>

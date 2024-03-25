@@ -15,6 +15,7 @@ export class NotificationsComponent implements OnInit {
   selectedLink: string = 'messages';
   loggedUserId: number = this.auth.getUserData().id;
   loggedUserRequests: LoggedUserRequest[];
+  loggedUserRoommateRequestsList: LoggedUserRequest[];
   userFriends: UsersFriends[];
   loggedUserRoomateData: CurrentRoommate;
   constructor(private auth: AuthService, private UserService: UserService) {}
@@ -22,6 +23,7 @@ export class NotificationsComponent implements OnInit {
     this.getLoggedUserRequests();
     this.loggedUserFriends();
     this.loggedUserRoommate();
+    this.loggedUserRoommateRequests();
   }
 
   selectLink(link: string): void {
@@ -45,8 +47,17 @@ export class NotificationsComponent implements OnInit {
   loggedUserRoommate() {
     this.UserService.currentRoomate(this.loggedUserId).subscribe(
       (data: CurrentRoommate) => {
-        console.log(data);
         this.loggedUserRoomateData = data;
+      }
+    );
+  }
+
+  loggedUserRoommateRequests() {
+    this.UserService.getLoggedUserRequest(this.loggedUserId).subscribe(
+      (data: LoggedUserRequest[]) => {
+        console.log(data);
+
+        this.loggedUserRoommateRequestsList = data;
       }
     );
   }

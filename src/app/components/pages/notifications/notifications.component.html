@@ -63,6 +63,7 @@
     <div class="col">
       <div class="col text-center">
         <app-roommate-requests
+        [roommateRequestsList]="loggedUserRoommateRequestsList"
           *ngIf="selectedLink === 'roommate-request'"
         ></app-roommate-requests>
         <app-current-roommate

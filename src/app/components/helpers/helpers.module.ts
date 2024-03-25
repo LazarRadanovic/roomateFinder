@@ -12,13 +12,6 @@ import { FriendRequestsComponent } from './friend-requests/friend-requests.compo
 import { FriendListComponent } from './friend-list/friend-list.component';
 import { ReserveEstateComponent } from './reserve-estate/reserve-estate.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import {
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogTitle,
-} from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
 import { CurrentRoommateComponent } from './current-roommate/current-roommate.component';
 import { RoommateRequestsComponent } from './roommate-requests/roommate-requests.component';
 
