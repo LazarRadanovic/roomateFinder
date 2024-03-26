@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'offer', component: OfferComponent },
-  { path: 'about', component: AboutUsComponent },
+  { path: 'event', component: AboutUsComponent },
   { path: `view-estate/:id`, component: ViewEstateComponent },
   { path: `view-user/:id`, component: ViewUserComponent },
   { path: 'notifaction', component: NotificationsComponent },

@@ -14,6 +14,7 @@ import { ReserveEstateComponent } from './reserve-estate/reserve-estate.componen
 import { MatDialogModule } from '@angular/material/dialog';
 import { CurrentRoommateComponent } from './current-roommate/current-roommate.component';
 import { RoommateRequestsComponent } from './roommate-requests/roommate-requests.component';
+import { EventModalComponent } from './event-modal/event-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { RoommateRequestsComponent } from './roommate-requests/roommate-requests
     ReserveEstateComponent,
     CurrentRoommateComponent,
     RoommateRequestsComponent,
+    EventModalComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ import { RoommateRequestsComponent } from './roommate-requests/roommate-requests
     ReserveEstateComponent,
     CurrentRoommateComponent,
     RoommateRequestsComponent,
+    EventModalComponent,
   ],
 })
 export class HelpersModule {}

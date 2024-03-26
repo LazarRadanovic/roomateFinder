@@ -16,7 +16,7 @@ export class HeaderComponent {
   links: Links[] = [
     { title: 'Home', url: '/' },
     { title: 'Offer', url: '/offer' },
-    { title: 'About', url: '/about-us' },
+    { title: 'Events', url: '/event' },
   ];
   loggedIn: boolean = this.auth.isLogged();
   user: User = this.auth.getUserData();
