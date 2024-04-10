@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchModalComponent } from './search-modal/search-modal.component';
 import { LikedModalComponent } from './liked-modal/liked-modal.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,6 +15,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CurrentRoommateComponent } from './current-roommate/current-roommate.component';
 import { RoommateRequestsComponent } from './roommate-requests/roommate-requests.component';
 import { EventModalComponent } from './event-modal/event-modal.component';
+import { PasswordFormComponent } from './password-form/password-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MessageModalComponent } from './message-modal/message-modal.component';
+import { ConversationItemComponent } from './conversation-item/conversation-item.component';
+import { ViewConversationComponent } from './view-conversation/view-conversation.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +34,10 @@ import { EventModalComponent } from './event-modal/event-modal.component';
     CurrentRoommateComponent,
     RoommateRequestsComponent,
     EventModalComponent,
+    PasswordFormComponent,
+    MessageModalComponent,
+    ConversationItemComponent,
+    ViewConversationComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +45,8 @@ import { EventModalComponent } from './event-modal/event-modal.component';
     FormsModule,
     MatIconModule,
     MatDialogModule,
+    MatInputModule,
+    ReactiveFormsModule,
   ],
   exports: [
     HeaderComponent,
@@ -50,6 +61,10 @@ import { EventModalComponent } from './event-modal/event-modal.component';
     CurrentRoommateComponent,
     RoommateRequestsComponent,
     EventModalComponent,
+    PasswordFormComponent,
+    MessageModalComponent,
+    ConversationItemComponent,
+    ViewConversationComponent,
   ],
 })
 export class HelpersModule {}

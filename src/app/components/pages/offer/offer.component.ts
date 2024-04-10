@@ -6,6 +6,7 @@ import { EstatesService } from '../services/estates-service.service';
 import { SharedService } from '../../../services/shared.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../../services/user-service.service';
 
 @Component({
   selector: 'app-offer',
@@ -23,7 +24,7 @@ export class OfferComponent implements OnInit {
   constructor(
     private estateService: EstatesService,
     private sharedService: SharedService, // @Host() private header: HeaderComponent
-    private auth: AuthService,
+    private auth: UserService,
     private router: Router
   ) {}
 

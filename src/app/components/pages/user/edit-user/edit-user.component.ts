@@ -3,6 +3,9 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { AuthService } from '../../../../services/auth.service';
 import { User } from '../../../../models/User';
 import { UserService } from '../../../../services/user-service.service';
+import { EditUser } from '../../../../models/Edit-user';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-user',
@@ -15,7 +18,9 @@ export class EditUserComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private toaster: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -26,11 +31,9 @@ export class EditUserComponent implements OnInit {
 
   private prepareForm() {
     this.form = new UntypedFormGroup({
-      ime: new UntypedFormControl(''), // Definišemo FormControl za ime
-      prezime: new UntypedFormControl(''), // Definišemo FormControl za prezime
-      gmail: new UntypedFormControl(''), // Definišemo FormControl za gmail
-      lokacija_cimera: new UntypedFormControl(''), // Definišemo FormControl za lokaciju cimera
-      password: new UntypedFormControl(''),
+      ime: new UntypedFormControl(''),
+      prezime: new UntypedFormControl(''),
+      lokacija_cimera: new UntypedFormControl(''),
     });
   }
 
@@ -43,16 +46,25 @@ export class EditUserComponent implements OnInit {
       this.form.patchValue({
         ime: this.currentLoggedUser.ime,
         prezime: this.currentLoggedUser.prezime,
-        gmail: this.currentLoggedUser.gmail,
         lokacija_cimera: this.currentLoggedUser.lokacija_cimera,
-        password: this.currentLoggedUser.password,
       });
     }
   }
 
   save() {
-    const userData = { ...this.form, gmail: this.currentLoggedUser.gmail };
-
-    // this.userService.editUser(userData);
+    const user: EditUser = {
+      id: this.authService.getUserData().id,
+      ime: this.form.get('ime').value,
+      prezime: this.form.get('prezime').value,
+      lokacija_cimera: this.form.get('lokacija_cimera').value,
+    };
+    this.userService.editUser(user).subscribe((data: boolean) => {
+      if (data) {
+        sessionStorage.setItem('personal-info', 'true');
+        this.router.navigate(['/login']);
+      } else {
+        this.toaster.error('error occured');
+      }
+    });
   }
 }

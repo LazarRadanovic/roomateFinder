@@ -5,6 +5,7 @@ import { OfferComponent } from '../../pages/offer/offer.component';
 import { SharedService } from '../../../services/shared.service';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/User';
+import { UserService } from '../../../services/user-service.service';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent {
     { title: 'Offer', url: '/offer' },
     { title: 'Events', url: '/event' },
   ];
-  loggedIn: boolean = this.auth.isLogged();
+  loggedIn: boolean = this.UserService.isLogged();
   user: User = this.auth.getUserData();
   visibility: boolean;
 
@@ -26,6 +27,7 @@ export class HeaderComponent {
     private router: Router,
     private sharedService: SharedService,
     private activetedRoute: ActivatedRoute,
+    private UserService: UserService,
     private auth: AuthService
   ) {}
 

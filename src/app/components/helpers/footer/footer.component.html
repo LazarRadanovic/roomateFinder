@@ -2,21 +2,26 @@
   <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
       <li class="nav-item">
-        <a href="#" class="nav-link px-2 text-muted">Home</a>
+        <a routerLink="/" class="nav-link px-2 text-muted">Home</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link px-2 text-muted">Features</a>
+        <a routerLink="/offer" class="nav-link px-2 text-muted">Offer</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link px-2 text-muted">Pricing</a>
+        <a routerLink="/event" class="nav-link px-2 text-muted">Events</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link px-2 text-muted">FAQs</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link px-2 text-muted">About</a>
+        <a
+          (click)="toggleMessageAdmin()"
+          type="button"
+          class="nav-link px-2 text-muted"
+          data-toggle="modal"
+          data-target="#messageModal"
+          >Contact Admin</a
+        >
       </li>
     </ul>
-    <p class="text-center text-muted">© 2022 Company, Inc</p>
+    <p class="text-center text-muted">© 2024 Logate Project</p>
   </footer>
 </div>
+<app-message-modal [admin]="adminMessageToggle"></app-message-modal>

@@ -4,6 +4,7 @@ import { LoggedUserRequest } from '../../../models/Logged-User-Requests';
 import { AuthService } from '../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, NavigationExtras } from '@angular/router';
+import { UserService } from '../../../services/user-service.service';
 
 @Component({
   selector: 'app-friend-requests',
@@ -15,7 +16,7 @@ export class FriendRequestsComponent {
   friend_aceppted: boolean;
 
   constructor(
-    private userService: AuthService,
+    private userService: UserService,
     private toaster: ToastrService,
     private router: Router,
     private auth: AuthService

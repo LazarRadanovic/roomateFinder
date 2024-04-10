@@ -1,1 +1,24 @@
-<h2>Your messeges</h2>
+<h2>Conversations</h2>
+<div class="conversations">
+  <div class="conversation" *ngFor="let conv of conversations">
+    <div
+      *ngIf="loggedUser.id !== conv.user_1 && isConversationOpened === false"
+    >
+      <app-conversation-item
+        [id]="conv.user_1"
+        (isConversationClicked)="isConversationClick($event)"
+      ></app-conversation-item>
+    </div>
+    <div *ngIf="loggedUser.id == conv.user_1 && isConversationOpened === false">
+      <app-conversation-item
+        [id]="conv.user_2"
+        (isConversationClicked)="isConversationClick($event)"
+      ></app-conversation-item>
+    </div>
+  </div>
+  <div *ngIf="isConversationOpened === true">
+    <app-view-conversation
+      [selectConversation]="selectConversation"
+    ></app-view-conversation>
+  </div>
+</div>

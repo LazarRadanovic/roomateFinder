@@ -31,11 +31,11 @@ export class NotificationsComponent implements OnInit {
   }
 
   getLoggedUserRequests() {
-    this.auth
-      .getLoggedUserRequest(this.loggedUserId)
-      .subscribe((data: LoggedUserRequest[]) => {
+    this.UserService.getLoggedUserRequest(this.loggedUserId).subscribe(
+      (data: LoggedUserRequest[]) => {
         this.loggedUserRequests = data;
-      });
+      }
+    );
   }
 
   loggedUserFriends() {
@@ -53,7 +53,7 @@ export class NotificationsComponent implements OnInit {
   }
 
   loggedUserRoommateRequests() {
-    this.UserService.getLoggedUserRequest(this.loggedUserId).subscribe(
+    this.UserService.getLoggedUserRommateRequest(this.loggedUserId).subscribe(
       (data: LoggedUserRequest[]) => {
         console.log(data);
 

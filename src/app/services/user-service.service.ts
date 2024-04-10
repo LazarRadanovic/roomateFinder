@@ -9,13 +9,15 @@ import { FormGroup } from '@angular/forms';
 import { User } from '../models/User';
 import { CurrentRoommate } from '../models/Current-roommate';
 import { LoggedUserRequest } from '../models/Logged-User-Requests';
+import { EditUser } from '../models/Edit-user';
+import { FriendshipCreate } from '../models/Friendship-create-model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   api_url = environment.API_URL;
-  loggedUserId = this.auth.getUserData().id;
+  // loggedUserId = this.auth.getUserData().id;
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   deleteFriend(friend: number, loggedUser: number) {
@@ -29,9 +31,10 @@ export class UserService {
   }
 
   loggedUserFrineds(): Observable<UsersFriends[]> {
+    const loggedUserId = this.auth.getUserData().id;
     const params = new HttpParams().set(
       'loggedUserId',
-      this.loggedUserId.toString()
+      loggedUserId.toString()
     );
     return this.http.get<UsersFriends[]>(`${this.api_url}/friends`, {
       params,
@@ -65,7 +68,9 @@ export class UserService {
     );
   }
 
-  getLoggedUserRequest(loggedUserId: number): Observable<LoggedUserRequest[]> {
+  getLoggedUserRommateRequest(
+    loggedUserId: number
+  ): Observable<LoggedUserRequest[]> {
     const params = new HttpParams().set(
       'loggedUserID',
       loggedUserId.toString()
@@ -99,5 +104,109 @@ export class UserService {
     );
   }
 
-  editUser(userData: User) {}
+  editUser(user: EditUser): Observable<boolean> {
+    return this.http.post<boolean>(`${this.api_url}/edit-user`, user);
+  }
+
+  changePassword(password: string, id: number): Observable<boolean> {
+    const body = {
+      newPassword: password,
+      id: id,
+    };
+    return this.http.post<boolean>(`${this.api_url}/update-password`, body);
+  }
+
+  usersLikes(idEstate: number) {
+    return this.http.get<User[]>(`${this.api_url}/user-likes/${idEstate}`);
+  }
+  usersLikedEstate(idEstate: number, idUser: number) {
+    const postData = {
+      estateId: idEstate,
+      userId: idUser,
+    };
+
+    return this.http.post(`${this.api_url}/user-liked-estate/`, postData);
+  }
+
+  getUserById(userId: number) {
+    return this.http.get<User>(`${this.api_url}/user/${userId}`);
+  }
+
+  isLogged() {
+    const token = localStorage.getItem('userToken');
+    if (token) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  checkLoggedUserLike(userId: number, estateId: number): Observable<boolean> {
+    const params = new HttpParams()
+      .set('estateId', estateId.toString())
+      .set('userId', userId.toString());
+
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.get<boolean>(`${this.api_url}/check-user-like/`, {
+      params,
+      headers,
+    });
+  }
+
+  dislikeEstate(userId: number, estateId: number): Observable<boolean> {
+    const params = new HttpParams()
+      .set('estateId', estateId.toString())
+      .set('userId', userId.toString());
+
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.delete<boolean>(`${this.api_url}/dislike-estate/`, {
+      params,
+      headers,
+    });
+  }
+
+  sendFriendRequest(senderId: number, receiverId: number): Observable<boolean> {
+    const friendRequest: FriendshipCreate = {
+      senderId: senderId,
+      receiverId: receiverId,
+      status: 'pending',
+    };
+
+    return this.http.post<boolean>(
+      `${this.api_url}/friendship/send-request`,
+      friendRequest
+    );
+  }
+
+  areFriends(senderId: number, receiverId: number): Observable<any> {
+    const params = new HttpParams()
+      .set('senderId', senderId.toString())
+      .set('receiverId', receiverId.toString());
+
+    return this.http.get<string>(`${this.api_url}/friendship/status`, {
+      params,
+    });
+  }
+
+  getLoggedUserRequest(loggedUserId: number): Observable<LoggedUserRequest[]> {
+    const params = new HttpParams().set('idReciever', loggedUserId.toString());
+
+    return this.http.get<LoggedUserRequest[]>(
+      `${this.api_url}/get-friend-requests`,
+      { params }
+    );
+  }
+
+  acceptFriendRequest(idTable: number) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    // const params = new HttpParams().set('idTable', idTable.toString());
+    return this.http.post(
+      `${this.api_url}/accept-request`,
+      { idTable },
+      {
+        headers,
+      }
+    );
+  }
 }
