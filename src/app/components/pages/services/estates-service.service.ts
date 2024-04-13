@@ -26,4 +26,8 @@ export class EstatesService {
   getEstateById(id: number): Observable<Estate> {
     return this.http.get<Estate>(`${this.api_url}/estates/${id}`);
   }
+
+  deleteEstate(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.api_url}/delete-esate/${id}`);
+  }
 }

@@ -1,0 +1,10 @@
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+textarea {
+  resize: vertical;
+}

@@ -1,4 +1,3 @@
-// // offer.component.ts
 import { Component, Host, Input, OnInit } from '@angular/core';
 import { Estate } from '../../../models/Estate';
 import { environment } from '../../../../environments/environment.development';
@@ -7,6 +6,7 @@ import { SharedService } from '../../../services/shared.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user-service.service';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-offer',
@@ -19,13 +19,16 @@ export class OfferComponent implements OnInit {
   estates: Estate[] = [];
   api_url = environment.API_URL;
   searchInputData: string = '';
-  isLogged: boolean = this.auth.isLogged();
+  isAdmin: boolean = this.auth.getUserData().isAdmin;
+  isLogged: boolean = this.userService.isLogged();
 
   constructor(
     private estateService: EstatesService,
-    private sharedService: SharedService, // @Host() private header: HeaderComponent
-    private auth: UserService,
-    private router: Router
+    private sharedService: SharedService,
+    private userService: UserService,
+    private auth: AuthService,
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -54,18 +57,21 @@ export class OfferComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  // searchByLocation(town: string) {
-  //   this.estateService
-  //     .getEstatesByLocation(this.header.inputSearch)
-  //     .subscribe((data) => {
-  //       this.estates = data;
-  //     });
-  // }
   filterEstates() {
     this.filterActive = !this.filterActive;
   }
 
   sortTownSelected(estatess: Estate[]) {
     this.estates = estatess;
+  }
+  deleteEstate(id: number) {
+    this.estateService.deleteEstate(id).subscribe((data: boolean) => {
+      if (data) {
+        this.toastr.success('Success', 'You deleted estate!');
+        this.ngOnInit();
+      } else {
+        this.toastr.warning('Error');
+      }
+    });
   }
 }

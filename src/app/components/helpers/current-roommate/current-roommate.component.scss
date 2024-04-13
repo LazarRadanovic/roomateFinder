@@ -13,8 +13,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
-  // margin-left: calc(50% - 100px);
-  // margin-top: calc(50vh - ((200px + 10px) * 0.5));
+
 }
 
 .price-like {

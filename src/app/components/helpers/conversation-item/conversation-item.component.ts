@@ -11,6 +11,7 @@ import { User } from '../../../models/User';
 export class ConversationItemComponent implements OnInit {
   @Output() isConversationClicked = new EventEmitter<number>();
   @Input() id: number;
+  @Input() conversationId: number;
   user: User = new User();
   constructor(private userService: UserService) {}
   ngOnInit(): void {
@@ -22,6 +23,6 @@ export class ConversationItemComponent implements OnInit {
   }
 
   reactOnClick() {
-    this.isConversationClicked.emit(this.id);
+    this.isConversationClicked.emit(this.conversationId);
   }
 }

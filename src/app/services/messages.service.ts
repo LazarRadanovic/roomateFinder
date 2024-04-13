@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { Message } from '../models/Message';
+import { stat } from 'fs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,9 +24,28 @@ export class MessagesService {
   }
 
   getConversationById(conversationId: number): Observable<Message[]> {
-    const params = {
-      conversationId: conversationId,
+    const params = new HttpParams().set(
+      'conversationId',
+      conversationId.toString()
+    );
+    return this.http.get<Message[]>(`${this.api_url}/messages`, { params });
+  }
+
+  sendMessage(
+    sender_id: number,
+    receiver_id: number,
+    content: string,
+    status: string,
+    conversation_id: number
+  ): Observable<boolean> {
+    const body = {
+      sender_id: sender_id,
+      receiver_id: receiver_id,
+      content: content,
+      status: status,
+      conversation_id: conversation_id,
     };
-    return this.http.post<Message[]>(`${this.api_url}/messages`, { params });
+
+    return this.http.post<boolean>(`${this.api_url}/send-message`, body);
   }
 }

@@ -55,8 +55,6 @@ export class NotificationsComponent implements OnInit {
   loggedUserRoommateRequests() {
     this.UserService.getLoggedUserRommateRequest(this.loggedUserId).subscribe(
       (data: LoggedUserRequest[]) => {
-        console.log(data);
-
         this.loggedUserRoommateRequestsList = data;
       }
     );

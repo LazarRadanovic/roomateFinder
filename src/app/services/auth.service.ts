@@ -25,7 +25,7 @@ export class AuthService {
     const tokenParts = token.split('.');
     const userDataPart = tokenParts[1];
     const user = JSON.parse(window.atob(userDataPart));
+
     return user;
   }
-
 }

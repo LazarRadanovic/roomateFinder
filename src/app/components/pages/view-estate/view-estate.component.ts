@@ -78,9 +78,7 @@ export class ViewEstateComponent implements OnInit {
     this.UserService.usersLikes(this.estate.id).subscribe(
       (userData: User[]) => {
         this.users = userData;
-        console.log(this.users);
         this.showModal = !this.showModal;
-        console.log(this.showModal);
       }
     );
   }
@@ -90,7 +88,6 @@ export class ViewEstateComponent implements OnInit {
       this.estate.id
     ).subscribe((data: boolean) => {
       this.likeIcon = data;
-      console.log(this.likeIcon);
     });
   }
   loggedUserFriends() {

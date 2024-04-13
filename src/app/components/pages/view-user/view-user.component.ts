@@ -21,10 +21,8 @@ export class ViewUserComponent implements OnInit {
   ngOnInit(): void {
     this.activedRoute.params.subscribe((paramsData) => {
       const userId = paramsData['id'];
-      console.log(typeof userId);
       this.UserSerivce.getUserById(parseInt(userId)).subscribe((data) => {
         this.user = data;
-        console.log(this.user);
       });
     });
     this.checkStatus();
@@ -33,29 +31,28 @@ export class ViewUserComponent implements OnInit {
   addFriend() {
     this.activedRoute.params.subscribe((paramsData) => {
       const receiverId = paramsData['id'];
-      this.UserSerivce
-        .sendFriendRequest(this.loggedUser.id, parseInt(receiverId))
-        .subscribe((data: boolean) => {
-          if (data) {
-            alert('Poslat je zahtjev za prijateljstvo');
-          } else {
-            alert('greska');
-          }
-        });
+      this.UserSerivce.sendFriendRequest(
+        this.loggedUser.id,
+        parseInt(receiverId)
+      ).subscribe((data: boolean) => {
+        if (data) {
+          alert('Poslat je zahtjev za prijateljstvo');
+        } else {
+          alert('greska');
+        }
+      });
     });
   }
 
   checkStatus() {
     this.activedRoute.params.subscribe((paramsData) => {
       const receiverId = paramsData['id'];
-      this.UserSerivce
-        .areFriends(this.loggedUser.id, parseInt(receiverId))
-        .subscribe((data: any) => {
-          console.log(data);
-
-          this.friendStatus = data.status;
-          console.log(this.friendStatus);
-        });
+      this.UserSerivce.areFriends(
+        this.loggedUser.id,
+        parseInt(receiverId)
+      ).subscribe((data: any) => {
+        this.friendStatus = data.status;
+      });
     });
   }
 }

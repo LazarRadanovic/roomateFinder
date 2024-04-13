@@ -38,8 +38,6 @@ export class ViewMessagesComponent implements OnInit {
   }
 
   getConversationsUser(id: number) {
-    console.log(id);
-
     this.userService.getUserById(id).subscribe((data: User) => {
       this.user = data;
     });

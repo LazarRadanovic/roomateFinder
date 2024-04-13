@@ -23,8 +23,6 @@ export class FriendRequestsComponent {
   ) {}
 
   addFriend(idTable: number) {
-    console.log(idTable);
-
     this.userService.acceptFriendRequest(idTable).subscribe((data: any) => {
       if (data.success) {
         this.toaster.success(

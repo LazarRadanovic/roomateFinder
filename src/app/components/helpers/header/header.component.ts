@@ -20,6 +20,7 @@ export class HeaderComponent {
     { title: 'Events', url: '/event' },
   ];
   loggedIn: boolean = this.UserService.isLogged();
+  isAdmin: boolean = this.auth.getUserData().isAdmin;
   user: User = this.auth.getUserData();
   visibility: boolean;
 
@@ -44,7 +45,6 @@ export class HeaderComponent {
       this.inputSearch = '';
       this.router.navigate(['/offer']);
     }
-    // Nastavite sa svojom logikom ili navigacijom
   }
   logout() {
     if (!localStorage.getItem('loggingOut')) {

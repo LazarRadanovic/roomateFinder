@@ -11,7 +11,5 @@ import { UserService } from '../../../services/user-service.service';
 })
 export class CurrentRoommateComponent implements OnInit {
   @Input() user: CurrentRoommate;
-  ngOnInit(): void {
-    console.log(this.user);
-  }
+  ngOnInit(): void {}
 }

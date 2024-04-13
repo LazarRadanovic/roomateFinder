@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MessageModalComponent } from './message-modal/message-modal.component';
 import { ConversationItemComponent } from './conversation-item/conversation-item.component';
 import { ViewConversationComponent } from './view-conversation/view-conversation.component';
+import { AddEstateComponent } from './add-estate/add-estate.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ViewConversationComponent } from './view-conversation/view-conversation
     MessageModalComponent,
     ConversationItemComponent,
     ViewConversationComponent,
+    AddEstateComponent,
   ],
   imports: [
     CommonModule,
@@ -65,6 +67,7 @@ import { ViewConversationComponent } from './view-conversation/view-conversation
     MessageModalComponent,
     ConversationItemComponent,
     ViewConversationComponent,
+    AddEstateComponent,
   ],
 })
 export class HelpersModule {}

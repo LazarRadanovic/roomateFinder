@@ -22,6 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { MatInputModule } from '@angular/material/input';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { AdministrationUserComponent } from './administration-user/administration-user.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
     ViewUserComponent,
     NotificationsComponent,
     EditUserComponent,
+    AdministrationUserComponent,
   ],
   imports: [
     CommonModule,
@@ -59,6 +61,11 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
     LoginComponent,
     RegisterComponent,
     NotificationsComponent,
+    AdministrationUserComponent,
+    ViewEstateComponent,
+    ViewUserComponent,
+    AboutUsComponent,
+    OfferComponent,
   ],
 })
 export class PagesModule {}

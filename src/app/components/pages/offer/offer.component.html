@@ -3,6 +3,15 @@
   <button class="filtriraj btn btn-warning mb-4 mt-2" (click)="filterEstates()">
     Filter
   </button>
+  <button
+    *ngIf="isAdmin"
+    type="button"
+    class="btn btn-primary mb-3 ml-1"
+    data-toggle="modal"
+    data-target="#addEstate"
+  >
+    Add estate
+  </button>
   <app-search-modal
     *ngIf="filterActive"
     (optionSelected)="sortTownSelected($event)"
@@ -38,6 +47,9 @@
                 class="btn btn-warning"
                 >View Estete</a
               >
+              <a (click)="deleteEstate(estate.id)" class="btn btn-warning ml-2"
+                >Delete Estate</a
+              >
             </div>
             <div class="btn-group" *ngIf="!isLogged">
               <a
@@ -52,4 +64,5 @@
     </div>
   </div>
 </div>
+<app-add-estate></app-add-estate>
 <app-footer *ngIf="!loading"></app-footer>

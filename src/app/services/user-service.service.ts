@@ -17,7 +17,6 @@ import { FriendshipCreate } from '../models/Friendship-create-model';
 })
 export class UserService {
   api_url = environment.API_URL;
-  // loggedUserId = this.auth.getUserData().id;
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   deleteFriend(friend: number, loggedUser: number) {
@@ -25,7 +24,6 @@ export class UserService {
       friendId: friend,
       loggedUserId: loggedUser,
     };
-    console.log(params);
 
     return this.http.post(`${this.api_url}/delete-friend`, params);
   }
@@ -200,7 +198,6 @@ export class UserService {
 
   acceptFriendRequest(idTable: number) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    // const params = new HttpParams().set('idTable', idTable.toString());
     return this.http.post(
       `${this.api_url}/accept-request`,
       { idTable },
@@ -208,5 +205,13 @@ export class UserService {
         headers,
       }
     );
+  }
+
+  getAllUsers(id: number): Observable<User[]> {
+    const params = new HttpParams().set('id', id.toString());
+    return this.http.get<User[]>(`${this.api_url}/users`, { params });
+  }
+  deleteUser(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.api_url}/delete-user/${id}`);
   }
 }

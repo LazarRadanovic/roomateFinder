@@ -1,0 +1,63 @@
+<div
+  class="modal fade"
+  id="addEstate"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add estate</h5>
+      </div>
+      <div class="modal-body" [formGroup]="form">
+        <mat-form-field>
+          <input
+            formControlName="grad"
+            matInput
+            type="text"
+            placeholder="Unesite grad"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            formControlName="kvadratura"
+            matInput
+            type="text"
+            placeholder="Unesite kvadraturu"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            formControlName="cijena"
+            matInput
+            type="number"
+            placeholder="Unesite cijenu"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <textarea
+            rows="4"
+            cols="50"
+            formControlName="opis"
+            matInput
+            type="text"
+            placeholder="Unesite kratki opis"
+          ></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput disabled />
+          <mat-icon matSuffix>attach_file</mat-icon>
+          <input type="file" />
+        </mat-form-field>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
