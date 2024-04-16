@@ -4,6 +4,7 @@ import { User } from '../../../models/User';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { SharedService } from '../../../services/shared.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private estateService: EstatesService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
   ngOnInit(): void {
     this.estateService.getAllTowns().subscribe((data) => {
@@ -27,7 +29,7 @@ export class RegisterComponent implements OnInit {
   registration() {
     this.auth.register(this.user).subscribe((data: any) => {
       if (data.success) {
-        alert('Registarcija uspjesna');
+        this.toastr.success('Go and find yourself a roommate 👨🏻‍🎓', 'Congrats');
         localStorage.setItem('userToken', data.token);
         this.router.navigate(['/user']);
       }

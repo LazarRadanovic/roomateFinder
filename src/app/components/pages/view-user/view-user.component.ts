@@ -3,6 +3,7 @@ import { User } from '../../../models/User';
 import { AuthService } from '../../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-view-user',
@@ -17,7 +18,8 @@ export class ViewUserComponent implements OnInit {
   constructor(
     private UserSerivce: UserService,
     private activedRoute: ActivatedRoute,
-    private auth: AuthService
+    private auth: AuthService,
+    private toastr: ToastrService
   ) {}
   ngOnInit(): void {
     this.toggleModal = false;
@@ -39,10 +41,16 @@ export class ViewUserComponent implements OnInit {
         parseInt(receiverId)
       ).subscribe((data: boolean) => {
         if (data) {
-          alert('Poslat je zahtjev za prijateljstvo');
+          this.toastr.success('You send a friend request 😎', 'Congrats', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
           this.checkStatus();
         } else {
-          alert('greska');
+          this.toastr.error("Can't send friend request now 🩹", 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
         }
       });
     });

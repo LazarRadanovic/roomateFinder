@@ -30,12 +30,13 @@ export class ViewEstateComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private auth: AuthService,
     private UserService: UserService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private toastr: ToastrService
   ) {}
   ngOnInit(): void {
     this.currentLoggedUserId = this.auth.getUserData().id;
     this.activatedRoute.params.subscribe((params) => {
-      const estateId = +params['id']; // +params['id'] parsira string u number
+      const estateId = +params['id'];
       this.estateService.getEstateById(estateId).subscribe((data) => {
         this.estate = data;
         this.checkLoggedUserLike();
@@ -51,7 +52,15 @@ export class ViewEstateComponent implements OnInit {
         this.currentLoggedUserId,
         estateId
       ).subscribe((data: boolean) => {
-        data ? alert(`Succesfully disliked estate`) : alert(`error`);
+        data
+          ? this.toastr.success('You disliked estate 💔', '', {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            })
+          : this.toastr.error('Error 🚨', '', {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            });
         this.likeIcon = !this.likeIcon;
       });
     } else {
