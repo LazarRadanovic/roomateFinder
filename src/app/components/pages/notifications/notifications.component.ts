@@ -24,6 +24,10 @@ export class NotificationsComponent implements OnInit {
     this.loggedUserFriends();
     this.loggedUserRoommate();
     this.loggedUserRoommateRequests();
+    if (sessionStorage.getItem('modalMessage') == 'true') {
+      window.location.reload();
+      sessionStorage.removeItem('modalMessage');
+    }
   }
 
   selectLink(link: string): void {

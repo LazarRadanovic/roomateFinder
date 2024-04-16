@@ -48,4 +48,12 @@ export class MessagesService {
 
     return this.http.post<boolean>(`${this.api_url}/send-message`, body);
   }
+
+  creatConversation(user1: number, user2: number) {
+    const body = {
+      senderId: user1,
+      receiverId: user2,
+    };
+    return this.http.post<any>(`${this.api_url}/conversations`, body);
+  }
 }

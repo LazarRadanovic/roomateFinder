@@ -11,14 +11,17 @@ import { UserService } from '../../../services/user-service.service';
 })
 export class ViewUserComponent implements OnInit {
   friendStatus: string;
-  loggedUser: User = this.auth.getUserData();
+  loggedUser: User = new User();
   user: User = new User();
+  toggleModal: boolean;
   constructor(
     private UserSerivce: UserService,
     private activedRoute: ActivatedRoute,
     private auth: AuthService
   ) {}
   ngOnInit(): void {
+    this.toggleModal = false;
+    this.loggedUser = this.auth.getUserData();
     this.activedRoute.params.subscribe((paramsData) => {
       const userId = paramsData['id'];
       this.UserSerivce.getUserById(parseInt(userId)).subscribe((data) => {
@@ -37,6 +40,7 @@ export class ViewUserComponent implements OnInit {
       ).subscribe((data: boolean) => {
         if (data) {
           alert('Poslat je zahtjev za prijateljstvo');
+          this.checkStatus();
         } else {
           alert('greska');
         }
@@ -54,5 +58,8 @@ export class ViewUserComponent implements OnInit {
         this.friendStatus = data.status;
       });
     });
+  }
+  reactModal(value: boolean) {
+    this.toggleModal = value;
   }
 }

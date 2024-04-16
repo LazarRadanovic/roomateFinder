@@ -1,0 +1,52 @@
+<div
+  class="modal fade"
+  id="addEvent"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add event</h5>
+      </div>
+      <div class="modal-body forma" [formGroup]="form">
+        <mat-form-field>
+          <input
+            formControlName="naslov"
+            matInput
+            type="text"
+            placeholder="Type in tittle"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            formControlName="date"
+            matInput
+            type="text"
+            placeholder="When will event start"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <textarea
+            rows="4"
+            cols="50"
+            formControlName="opis"
+            matInput
+            type="text"
+            placeholder="Unesite kratki opis"
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button (click)="addEvent()" type="button" class="btn btn-success">
+          Save new event
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

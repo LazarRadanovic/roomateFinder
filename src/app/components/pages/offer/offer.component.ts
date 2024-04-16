@@ -19,7 +19,7 @@ export class OfferComponent implements OnInit {
   estates: Estate[] = [];
   api_url = environment.API_URL;
   searchInputData: string = '';
-  isAdmin: boolean = this.auth.getUserData().isAdmin;
+  isAdmin: boolean;
   isLogged: boolean = this.userService.isLogged();
 
   constructor(
@@ -32,6 +32,9 @@ export class OfferComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (sessionStorage.getItem('luser') == 'true') {
+      this.isAdmin = this.auth.getUserData().isAdmin;
+    }
     this.loading = true;
     this.sharedService.searchData$.subscribe((data) => {
       this.searchInputData = data;

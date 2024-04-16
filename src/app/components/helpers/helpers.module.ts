@@ -21,6 +21,8 @@ import { MessageModalComponent } from './message-modal/message-modal.component';
 import { ConversationItemComponent } from './conversation-item/conversation-item.component';
 import { ViewConversationComponent } from './view-conversation/view-conversation.component';
 import { AddEstateComponent } from './add-estate/add-estate.component';
+import { AddEventComponent } from './add-event/add-event.component';
+import { UserConversationComponent } from './user-conversation/user-conversation.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { AddEstateComponent } from './add-estate/add-estate.component';
     ConversationItemComponent,
     ViewConversationComponent,
     AddEstateComponent,
+    AddEventComponent,
+    UserConversationComponent,
   ],
   imports: [
     CommonModule,
@@ -68,6 +72,8 @@ import { AddEstateComponent } from './add-estate/add-estate.component';
     ConversationItemComponent,
     ViewConversationComponent,
     AddEstateComponent,
+    AddEventComponent,
+    UserConversationComponent,
   ],
 })
 export class HelpersModule {}

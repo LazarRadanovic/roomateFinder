@@ -9,9 +9,9 @@ import { Route, Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   constructor(private router: Router) {}
   ngOnInit(): void {
-    if (!localStorage.getItem('logged')) {
-      localStorage.setItem('logged', 'true');
+    if (sessionStorage.getItem('loginReload') == 'true') {
       window.location.reload();
+      sessionStorage.removeItem('loginReload');
     }
   }
   navigateHome() {

@@ -27,7 +27,7 @@ export class ViewConversationComponent implements OnInit {
     private userService: UserService
   ) {}
   ngOnInit(): void {
-    this.prepareFormControl();
+    this.initializeForm();
     this.user = this.auth.getUserData();
     this.messageService
       .getConversationById(this.selectConversation)
@@ -35,7 +35,7 @@ export class ViewConversationComponent implements OnInit {
         this.messages = data;
       });
   }
-  prepareFormControl() {
+  initializeForm() {
     this.form = new UntypedFormGroup({
       content: new UntypedFormControl(null, Validators.required),
     });
@@ -81,4 +81,5 @@ export class ViewConversationComponent implements OnInit {
         }
       });
   }
+  changeStaus(id: number) {}
 }

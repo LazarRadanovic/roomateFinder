@@ -1,0 +1,55 @@
+<div
+  class="modal fade"
+  id="userConversation"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Message to {{ receiverUser.ime }} {{ receiverUser.prezime }}
+        </h5>
+
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div data-mdb-input-init class="form-outline">
+          <textarea
+            placeholder="Type Message"
+            class="form-control"
+            id="message"
+            rows="2"
+            [(ngModel)]="messageText"
+          ></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          (click)="modalReact(true)"
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          (click)="startConversation()"
+          type="button"
+          class="btn btn-primary"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,8 +21,8 @@ export class ViewEstateComponent implements OnInit {
   showModal: boolean = false;
   likeIcon: boolean = false;
   reserveModal: boolean = false;
-  isLogged = this.UserService.isLogged();
-  currentLoggedUserId: number = this.auth.getUserData().id;
+  // isLogged = this.UserService.isLogged();
+  currentLoggedUserId: number;
   userFriends: UsersFriends[];
 
   constructor(
@@ -33,6 +33,7 @@ export class ViewEstateComponent implements OnInit {
     private toaster: ToastrService
   ) {}
   ngOnInit(): void {
+    this.currentLoggedUserId = this.auth.getUserData().id;
     this.activatedRoute.params.subscribe((params) => {
       const estateId = +params['id']; // +params['id'] parsira string u number
       this.estateService.getEstateById(estateId).subscribe((data) => {

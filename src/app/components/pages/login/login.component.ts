@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
     if (localStorage.getItem('loggingOut')) {
       window.location.reload();
       localStorage.clear();
+      sessionStorage.clear();
     } else if (sessionStorage.getItem('personal-info') == 'true') {
       this.toastr.success('Personal information has been updated', 'Login ', {
         timeOut: 3000,
@@ -46,6 +47,8 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.user).subscribe((data: any) => {
         if (data.success) {
           localStorage.setItem('userToken', data.token);
+          sessionStorage.setItem('isAdmin', this.auth.getUserData().isAdmin);
+          sessionStorage.setItem('loginReload', 'true');
           this.router.navigate(['/']);
         } else {
           alert(data.msg);

@@ -11,5 +11,24 @@ import { UserService } from '../../../services/user-service.service';
 })
 export class CurrentRoommateComponent implements OnInit {
   @Input() user: CurrentRoommate;
-  ngOnInit(): void {}
+  loggeduser: User = new User();
+  constructor(private userService: UserService, private auth: AuthService) {}
+  ngOnInit(): void {
+    this.loggeduser = this.auth.getUserData();
+    this.userService
+      .currentRoomate(this.loggeduser.id)
+      .subscribe((data: CurrentRoommate) => {
+        this.user = data;
+      });
+  }
+
+  cancelRoomate() {
+    this.userService
+      .declineRoommateRequest(this.user.RequestID)
+      .subscribe((data: any) => {
+        if (data.success) {
+          this.ngOnInit();
+        }
+      });
+  }
 }

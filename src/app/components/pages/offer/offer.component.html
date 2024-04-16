@@ -47,7 +47,10 @@
                 class="btn btn-warning"
                 >View Estete</a
               >
-              <a (click)="deleteEstate(estate.id)" class="btn btn-warning ml-2"
+              <a
+                *ngIf="isAdmin"
+                (click)="deleteEstate(estate.id)"
+                class="btn btn-warning ml-2"
                 >Delete Estate</a
               >
             </div>

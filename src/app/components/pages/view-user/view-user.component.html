@@ -19,20 +19,37 @@
               Add a friend
             </button>
             <button
-              (click)="addFriend()"
               *ngIf="friendStatus == 'accepted'"
-              class="btn btn-success mr-2"
+              class="btn btn-success mr-2 disabled"
             >
               Friends <mat-icon>check_circle_outline</mat-icon>
             </button>
             <button
-              (click)="addFriend()"
               *ngIf="friendStatus == 'pending'"
-              class="btn btn-success mr-2"
+              class="btn btn-success mr-2 disabled"
             >
               Pending request <mat-icon>help_outline</mat-icon>
             </button>
-            <button class="btn btn-outline-primary">Message</button>
+            <button
+              *ngIf="friendStatus == 'accepted'"
+              class="btn btn-outline-primary"
+              data-toggle="modal"
+              data-target="#userConversation"
+            >
+              Message
+            </button>
+            <button
+              *ngIf="friendStatus == 'pending'"
+              class="btn btn-outline-primary disabled"
+            >
+              Message
+            </button>
+            <button
+              *ngIf="friendStatus == 'notFriends'"
+              class="btn btn-outline-primary disabled"
+            >
+              Message
+            </button>
           </div>
         </div>
       </div>
@@ -60,3 +77,9 @@
     </div>
   </div>
 </div>
+<app-user-conversation
+  *ngIf="toggleModal == false"
+  (toggleModal)="reactModal($event)"
+  [receiverUser]="user"
+  [loggedUser]="loggedUser"
+></app-user-conversation>

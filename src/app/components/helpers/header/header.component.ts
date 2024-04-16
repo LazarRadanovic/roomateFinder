@@ -12,7 +12,7 @@ import { UserService } from '../../../services/user-service.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   inputSearch: string = '';
   links: Links[] = [
     { title: 'Home', url: '/' },
@@ -20,7 +20,7 @@ export class HeaderComponent {
     { title: 'Events', url: '/event' },
   ];
   loggedIn: boolean = this.UserService.isLogged();
-  isAdmin: boolean = this.auth.getUserData().isAdmin;
+  isAdmin: boolean;
   user: User = this.auth.getUserData();
   visibility: boolean;
 
@@ -31,6 +31,13 @@ export class HeaderComponent {
     private UserService: UserService,
     private auth: AuthService
   ) {}
+  ngOnInit(): void {
+    if (sessionStorage.getItem('isAdmin') == 'true') {
+      this.isAdmin = true;
+    } else {
+      this.isAdmin = false;
+    }
+  }
 
   setVisibility() {
     this.sharedService.headerVisibility.subscribe((data) => {
@@ -50,6 +57,11 @@ export class HeaderComponent {
     if (!localStorage.getItem('loggingOut')) {
       localStorage.setItem('loggingOut', 'true');
       this.router.navigate(['/login']);
+    }
+  }
+  offerClicked() {
+    if (this.auth.getUserData()) {
+      sessionStorage.setItem('luser', 'true');
     }
   }
 }

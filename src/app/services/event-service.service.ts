@@ -14,4 +14,8 @@ export class EventService {
   getAllEvents(): Observable<EventModel[]> {
     return this.http.get<EventModel[]>(`${this.API}/events`);
   }
+
+  addEvent(event: EventModel): Observable<boolean> {
+    return this.http.post<boolean>(`${this.API}/add-event`, event);
+  }
 }

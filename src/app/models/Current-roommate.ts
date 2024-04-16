@@ -1,4 +1,5 @@
 export class CurrentRoommate {
+  RequestID: number;
   imeRoommate: string;
   prezimeRoommate: string;
   lokacija_cimera: string;
