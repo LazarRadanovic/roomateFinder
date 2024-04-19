@@ -21,7 +21,7 @@ export class ViewEstateComponent implements OnInit {
   showModal: boolean = false;
   likeIcon: boolean = false;
   reserveModal: boolean = false;
-  // isLogged = this.UserService.isLogged();
+  numberOfLikes: number;
   currentLoggedUserId: number;
   userFriends: UsersFriends[];
 
@@ -40,6 +40,7 @@ export class ViewEstateComponent implements OnInit {
       this.estateService.getEstateById(estateId).subscribe((data) => {
         this.estate = data;
         this.checkLoggedUserLike();
+        this.countLikes(estateId);
       });
     });
     this.loggedUserFriends();
@@ -52,16 +53,19 @@ export class ViewEstateComponent implements OnInit {
         this.currentLoggedUserId,
         estateId
       ).subscribe((data: boolean) => {
-        data
-          ? this.toastr.success('You disliked estate 💔', '', {
-              timeOut: 3000,
-              positionClass: 'toast-top-center',
-            })
-          : this.toastr.error('Error 🚨', '', {
-              timeOut: 3000,
-              positionClass: 'toast-top-center',
-            });
-        this.likeIcon = !this.likeIcon;
+        if (data) {
+          this.toastr.success('You disliked estate 💔', '', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+          this.countLikes(estateId);
+          this.likeIcon = !this.likeIcon;
+        } else {
+          this.toastr.error('Error 🚨', '', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
       });
     } else {
       const estateId = this.estate.id;
@@ -71,12 +75,13 @@ export class ViewEstateComponent implements OnInit {
       ).subscribe((data: any) => {
         if (data.success) {
           this.likeIcon = !this.likeIcon;
-          this.toaster.success('', 'You liked Estate ✋', {
+          this.toastr.success('', 'You liked Estate ✋', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
+          this.countLikes(estateId);
         } else {
-          this.toaster.error('Error', 'Cant like estate at this time', {
+          this.toastr.error('Error', "Can't like estate at this time", {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
@@ -84,6 +89,7 @@ export class ViewEstateComponent implements OnInit {
       });
     }
   }
+
   toggleModal() {
     this.UserService.usersLikes(this.estate.id).subscribe(
       (userData: User[]) => {
@@ -104,5 +110,13 @@ export class ViewEstateComponent implements OnInit {
     this.UserService.loggedUserFrineds().subscribe((data: UsersFriends[]) => {
       this.userFriends = data;
     });
+  }
+
+  countLikes(idEstate: number) {
+    this.estateService
+      .countLikesByEstateId(idEstate)
+      .subscribe((data: number) => {
+        this.numberOfLikes = data;
+      });
   }
 }

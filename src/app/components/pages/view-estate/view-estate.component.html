@@ -30,6 +30,10 @@
         <h2 class="text-center">{{ estate.town }}</h2>
         <p>{{ estate.description }}</p>
         <div class="price-like">
+          <span>
+            <mat-icon class="color">thumb_up</mat-icon>
+            {{ numberOfLikes }} likes</span
+          >
           <h4>Cijena:{{ estate.price }}Eur</h4>
           <mat-icon (click)="userLikedEstate()" *ngIf="likeIcon"
             >favorite</mat-icon

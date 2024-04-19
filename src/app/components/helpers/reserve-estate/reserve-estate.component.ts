@@ -3,6 +3,7 @@ import { UsersFriends } from '../../../models/Users-friend';
 import { AuthService } from '../../../services/auth.service';
 import { UserService } from '../../../services/user-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { CurrentRoommate } from '../../../models/Current-roommate';
 
 @Component({
   selector: 'app-reserve-estate',
@@ -13,33 +14,51 @@ export class ReserveEstateComponent implements OnInit {
   @Input() listOfFriends: UsersFriends[];
   @Input() estateID: number;
   loggedUser = this.auth.getUserData();
+  canReserve: boolean = true;
   constructor(
     private auth: AuthService,
     private userService: UserService,
     private toast: ToastrService
   ) {}
-  ngOnInit(): void {}
-
-  resrveEstate(friendId: number) {
+  ngOnInit(): void {
     this.userService
-      .roomateRequest(this.loggedUser.id, friendId, this.estateID)
-      .subscribe((data: boolean) => {
-        if (data) {
-          let friend = this.listOfFriends.filter(
-            (e) => e.friendId === friendId
-          );
-          this.toast.success(
-            `Poslat zahtjev za cimera`,
-            `Vas Zahtjev za cimera je uspjesno poslat korisniku ${friend[0].friendIme}`,
-            { timeOut: 4000, positionClass: 'toast-bottom-right' }
-          );
+      .currentRoomate(this.loggedUser.id)
+      .subscribe((data: CurrentRoommate) => {
+        if (data == null) {
+          this.canReserve = true;
         } else {
-          this.toast.warning(
-            `Poslat zahtjev za cimera`,
-            `Vas Zahtjev za cimera je uspjesno poslat`,
-            { timeOut: 4000, positionClass: 'toast-bottom-right' }
-          );
+          this.canReserve = false;
         }
       });
+  }
+
+  resrveEstate(friendId: number) {
+    if (this.canReserve) {
+      this.userService
+        .roomateRequest(this.loggedUser.id, friendId, this.estateID)
+        .subscribe((data: boolean) => {
+          if (data) {
+            let friend = this.listOfFriends.filter(
+              (e) => e.friendId === friendId
+            );
+            this.toast.success(
+              `Poslat zahtjev za cimera`,
+              `Vas Zahtjev za cimera je uspjesno poslat korisniku ${friend[0].friendIme}`,
+              { timeOut: 4000, positionClass: 'toast-bottom-right' }
+            );
+          } else {
+            this.toast.warning(
+              `Poslat zahtjev za cimera`,
+              `Vas Zahtjev za cimera je uspjesno poslat`,
+              { timeOut: 4000, positionClass: 'toast-bottom-right' }
+            );
+          }
+        });
+    } else {
+      this.toast.warning(`You have roommate`, `⚠️`, {
+        timeOut: 4000,
+        positionClass: 'toast-bottom-right',
+      });
+    }
   }
 }

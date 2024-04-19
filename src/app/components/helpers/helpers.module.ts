@@ -23,6 +23,7 @@ import { ViewConversationComponent } from './view-conversation/view-conversation
 import { AddEstateComponent } from './add-estate/add-estate.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { UserConversationComponent } from './user-conversation/user-conversation.component';
+import { EstateCommentsComponent } from './estate-comments/estate-comments.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { UserConversationComponent } from './user-conversation/user-conversation
     AddEstateComponent,
     AddEventComponent,
     UserConversationComponent,
+    EstateCommentsComponent,
   ],
   imports: [
     CommonModule,

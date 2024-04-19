@@ -30,4 +30,7 @@ export class EstatesService {
   deleteEstate(id: number): Observable<boolean> {
     return this.http.delete<boolean>(`${this.api_url}/delete-esate/${id}`);
   }
+  countLikesByEstateId(idEstate: number): Observable<number> {
+    return this.http.get<number>(`${this.api_url}/count-likes/${idEstate}`);
+  }
 }

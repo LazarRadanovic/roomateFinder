@@ -5,7 +5,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
-
 }
 .price-like {
   display: flex;
@@ -36,4 +35,7 @@
 .btn {
   margin: 0;
   border: 0cap;
+}
+.color {
+  color: rgba(59, 59, 203, 0.838);
 }
