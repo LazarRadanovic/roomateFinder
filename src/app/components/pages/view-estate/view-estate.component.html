@@ -35,10 +35,16 @@
             {{ numberOfLikes }} likes</span
           >
           <h4>Cijena:{{ estate.price }}Eur</h4>
-          <mat-icon (click)="userLikedEstate()" *ngIf="likeIcon"
+          <mat-icon
+            class="heart-color"
+            (click)="userLikedEstate()"
+            *ngIf="likeIcon"
             >favorite</mat-icon
           >
-          <mat-icon (click)="userLikedEstate()" *ngIf="!likeIcon"
+          <mat-icon
+            class="heart-color"
+            (click)="userLikedEstate()"
+            *ngIf="!likeIcon"
             >favorite_border</mat-icon
           >
         </div>

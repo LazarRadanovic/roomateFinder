@@ -76,6 +76,7 @@ import { EstateCommentsComponent } from './estate-comments/estate-comments.compo
     AddEstateComponent,
     AddEventComponent,
     UserConversationComponent,
+    EstateCommentsComponent,
   ],
 })
 export class HelpersModule {}
