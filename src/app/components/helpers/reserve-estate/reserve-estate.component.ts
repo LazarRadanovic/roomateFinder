@@ -26,8 +26,10 @@ export class ReserveEstateComponent implements OnInit {
       .subscribe((data: CurrentRoommate) => {
         if (data == null) {
           this.canReserve = true;
+          console.log(this.canReserve);
         } else {
           this.canReserve = false;
+          console.log(this.canReserve);
         }
       });
   }
@@ -60,5 +62,8 @@ export class ReserveEstateComponent implements OnInit {
         positionClass: 'toast-bottom-right',
       });
     }
+  }
+  toogleToastr() {
+    this.toast.warning('You already have roommate!', 'First cancel roommate!');
   }
 }
